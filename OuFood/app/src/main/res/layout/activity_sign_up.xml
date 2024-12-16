@@ -45,7 +45,7 @@
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
             android:layout_marginBottom="10dp"
-            android:hint="Full name"
+            android:hint="Tên"
             app:boxCornerRadiusBottomEnd="20sp"
             app:boxCornerRadiusBottomStart="20sp"
             app:boxCornerRadiusTopEnd="20sp"
@@ -87,7 +87,7 @@
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
             android:layout_marginBottom="10dp"
-            android:hint="Phone"
+            android:hint="Số điện thoại"
             app:boxCornerRadiusBottomEnd="20sp"
             app:boxCornerRadiusBottomStart="20sp"
             app:boxCornerRadiusTopEnd="20sp"
@@ -108,7 +108,7 @@
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
             android:layout_marginBottom="10dp"
-            android:hint="Password"
+            android:hint="Mật khẩu"
             app:boxCornerRadiusBottomEnd="20sp"
             app:boxCornerRadiusBottomStart="20sp"
             app:boxCornerRadiusTopEnd="20sp"
@@ -130,7 +130,7 @@
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
             android:layout_marginBottom="10dp"
-            android:hint="Confirm password"
+            android:hint="Xác nhận mật khẩu"
             app:boxCornerRadiusBottomEnd="20sp"
             app:boxCornerRadiusBottomStart="20sp"
             app:boxCornerRadiusTopEnd="20sp"
@@ -165,7 +165,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You're a member? "
+                android:text="Đã có tài khoản? "
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
@@ -173,7 +173,7 @@
                 android:id="@+id/tv_loginNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Login now"
+                android:text="Đăng nhập"
                 android:textStyle="bold"
                 android:textColor="@color/blue"
                 android:textSize="20dp" />
