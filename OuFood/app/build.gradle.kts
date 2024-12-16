@@ -44,7 +44,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 //
-//    implementation(libs.cloudinary.android)
+    implementation(libs.cloudinary.android)
 //    implementation(libs.ratingBar)
 //    implementation(libs.play.services.location)
 //    implementation(libs.android.socialButtons)
@@ -58,7 +58,7 @@ dependencies {
 //    implementation(libs.firebase.storage)
 //    implementation(libs.android.iconify.material)
 //    implementation(libs.android.iconify.fontawesome)
-//    implementation(libs.picasso)
+    implementation(libs.picasso)
 //    implementation(libs.firebase.ui.database)
 //    implementation(libs.recyclerview.v7)
 //    implementation(libs.cardview.v7)

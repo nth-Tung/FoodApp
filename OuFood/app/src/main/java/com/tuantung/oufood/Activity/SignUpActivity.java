@@ -53,23 +53,30 @@ public class SignUpActivity extends BaseActivity {
                 String email = edit_email.getText().toString();
                 String password = edit_password.getText().toString();
                 String confPass = edit_confPass.getText().toString();
-                if (TextUtils.isEmpty(name)) {
+                if (name.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Hãy nhập tên!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (TextUtils.isEmpty(email)) {
+                if (email.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Hãy nhập email!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (TextUtils.isEmpty(password)) {
+                if (password.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Hãy nhập mật khẩu!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (TextUtils.isEmpty(confPass)) {
+                if (confPass.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Nhập lại mật khẩu!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Kiểm tra mật khẩu với biểu thức chính quy
+                String passwordPattern = "(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-={}|;:'\",<.>/?])(?=.*\\d).{8,}";
+                if (!password.matches(passwordPattern)) {
+                    Toast.makeText(SignUpActivity.this, "Mật khẩu phải có ít nhất 8 ký tự, một ký tự đặc biệt và một ký tự hoa!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -105,7 +112,7 @@ public class SignUpActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    Toast.makeText(getApplicationContext(), "2 Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Email đã tồn tại!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

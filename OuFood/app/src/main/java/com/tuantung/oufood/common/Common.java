@@ -18,7 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Common {
-    public static User CURRENTUSER;
+    public static User currentUser;
 
     public static final FirebaseDatabase FIREBASE_DATABASE = FirebaseDatabase.getInstance();
     public static final String REF_CATEGORIES = "Category";

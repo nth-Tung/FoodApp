@@ -57,8 +57,6 @@ public class SignInActivity extends BaseActivity {
             if (!user.isEmpty() && !password.isEmpty()) {
                 edit_email.setText(user);
                 edit_password.setText(password);
-                loadingDialog.show();
-                login(user, password);
             }
         }
 
@@ -112,7 +110,7 @@ public class SignInActivity extends BaseActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             User user = snapshot.getValue(User.class);
-                            Common.CURRENTUSER = user;
+                            Common.currentUser = user;
 
                             Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
                             startActivity(homeIntent);

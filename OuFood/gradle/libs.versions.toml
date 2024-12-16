@@ -12,6 +12,10 @@ firebaseDatabase = "21.0.0"
 firebaseAuth = "23.1.0"
 paperdb = "2.7.1"
 cuteToast = "1.2"
+picasso = "2.8"
+cloudinaryandroid = "3.0.2"
+
+
 
 
 [libraries]
@@ -26,6 +30,8 @@ firebase-database = { group = "com.google.firebase", name = "firebase-database",
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 paperdb = { group = "io.github.pilgr", name = "paperdb", version.ref = "paperdb" }
 cuteToast = { group = "com.github.ahmmedrejowan.CuteToast", name = "CuteToast", version.ref = "cuteToast" }
+picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
+cloudinary-android = { group = "com.cloudinary", name = "cloudinary-android", version.ref = "cloudinaryandroid" }
 
 
 
