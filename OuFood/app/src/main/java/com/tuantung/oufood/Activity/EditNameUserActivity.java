@@ -3,10 +3,14 @@ package com.tuantung.oufood.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -16,7 +20,8 @@ import com.tuantung.oufood.R;
 import com.tuantung.oufood.common.Common;
 
 public class EditNameUserActivity extends AppCompatActivity {
-    TextView btn_luu;
+    AppCompatButton btn_luu;
+     ImageView buttonBack;
     TextInputEditText input;
 
     @Override
@@ -24,40 +29,20 @@ public class EditNameUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_name_user);
 
+        //button back
+        buttonBack= findViewById(R.id.button_back);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         btn_luu = findViewById(R.id.btn_luu);
         input = findViewById(R.id.input);
 
         input.setText(Common.currentUser.getName());
-        input.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String newText = s.toString().trim();
-                if (newText.equals(Common.currentUser.getName()) || newText.isBlank()) {
-                    btn_luu.setTextColor(getResources().getColor(R.color.gray));
-                    btn_luu.setEnabled(false);
-                } else {
-                    btn_luu.setTextColor(getResources().getColor(R.color.blue));
-                    btn_luu.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String newText = s.toString().trim();
-                if (newText.equals(Common.currentUser.getName()) || newText.isBlank()) {
-                    btn_luu.setTextColor(getResources().getColor(R.color.gray));
-                    btn_luu.setEnabled(false);
-                } else {
-                    btn_luu.setTextColor(getResources().getColor(R.color.blue));
-                    btn_luu.setEnabled(true);
-                }
-            }
-        });
 
         btn_luu.setOnClickListener(v -> {
             String newName = input.getText().toString().trim();

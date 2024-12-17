@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 import com.tuantung.oufood.Activity.ChangePasswordActivity;
@@ -36,6 +37,8 @@ public class AccountFragment extends Fragment {
 
     private ImageView ic_next_name, ic_next_phone, ic_next_password;
 
+    private ImageView buttonChangeImage;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +52,7 @@ public class AccountFragment extends Fragment {
         phone = view.findViewById(R.id.phone);
         email = view.findViewById(R.id.email);
         logout = view.findViewById(R.id.button_logout);
+        buttonChangeImage=view.findViewById(R.id.button_changeImage);
 
         //logout
         logout.setOnClickListener(new View.OnClickListener() {
@@ -63,10 +67,10 @@ public class AccountFragment extends Fragment {
         });
 
 
-        if (!Common.currentUser.getUrl().equals(" "))
+        if (!Common.currentUser.getUrl().equals(" ")) {
             Picasso.get().load(Common.currentUser.getUrl()).into(pic);
-
-        pic.setOnClickListener(v -> {
+        }
+        buttonChangeImage.setOnClickListener(v -> {
            startActivity(new Intent(requireActivity(), EditAvatarActivity.class));
         });
 
@@ -104,6 +108,6 @@ public class AccountFragment extends Fragment {
         super.onResume();
         phone.setText(Common.currentUser.getPhone());
         name.setText(Common.currentUser.getName());
-
+        Picasso.get().load(Common.currentUser.getUrl()).into(pic);
     }
 }

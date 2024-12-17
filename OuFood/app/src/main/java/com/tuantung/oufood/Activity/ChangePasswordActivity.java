@@ -1,11 +1,14 @@
 package com.tuantung.oufood.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -22,17 +25,27 @@ import com.tuantung.oufood.common.Common;
 import io.paperdb.Paper;
 
 public class ChangePasswordActivity extends AppCompatActivity {
-    TextView btn_luu;
+    AppCompatButton btn_luu;
     TextInputEditText input_oldPassword, input_newPassword_1, input_newPassword_2;
 
     TextInputLayout layout_oldPassword, layout_newPassword1, layout_newPassword2;
 
     String password, password_1, password_2;
 
+    private ImageView buttonBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+
+        buttonBack= findViewById(R.id.button_back);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         btn_luu = findViewById(R.id.btn_luu);
         input_oldPassword = findViewById(R.id.old_password);
