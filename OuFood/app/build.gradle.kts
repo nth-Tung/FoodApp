@@ -52,7 +52,7 @@ dependencies {
     implementation(libs.paperdb)
 //    implementation(libs.materialSearchBar)
 //    implementation(libs.firebase.auth)
-//    implementation(libs.sqliteassethelper)
+    implementation(libs.sqliteassethelper)
 //    implementation(libs.design)
 //    implementation(libs.firebase.storage.ktx)
 //    implementation(libs.firebase.storage)

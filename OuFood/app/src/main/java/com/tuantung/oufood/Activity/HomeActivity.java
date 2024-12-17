@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.tuantung.oufood.Fragment.AccountFragment;
+import com.tuantung.oufood.Fragment.MenuFragment;
 import com.tuantung.oufood.R;
 import com.tuantung.oufood.common.Common;
 
@@ -37,6 +38,8 @@ public class HomeActivity extends BaseActivity {
 
         Paper.init(this);
 
+        replaceFragment(new MenuFragment());
+
         navMenu = findViewById(R.id.nav_menu);
         navCart = findViewById(R.id.nav_cart);
         navOrder = findViewById(R.id.nav_order);
@@ -45,11 +48,10 @@ public class HomeActivity extends BaseActivity {
         requestPermissions();
 //        replaceFragment(new MenuFragment());
         getVariable();
-
     }
 
     private void getVariable() {
-//        navMenu.setOnClickListener(v -> replaceFragment(new MenuFragment()));
+        navMenu.setOnClickListener(v -> replaceFragment(new MenuFragment()));
 //
 //        navOrder.setOnClickListener(v -> replaceFragment(new OrderFragment()));
 

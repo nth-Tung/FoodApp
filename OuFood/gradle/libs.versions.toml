@@ -14,8 +14,7 @@ paperdb = "2.7.1"
 cuteToast = "1.2"
 picasso = "2.8"
 cloudinaryandroid = "3.0.2"
-
-
+sqliteassethelper = "+"
 
 
 [libraries]
@@ -32,7 +31,7 @@ paperdb = { group = "io.github.pilgr", name = "paperdb", version.ref = "paperdb"
 cuteToast = { group = "com.github.ahmmedrejowan.CuteToast", name = "CuteToast", version.ref = "cuteToast" }
 picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
 cloudinary-android = { group = "com.cloudinary", name = "cloudinary-android", version.ref = "cloudinaryandroid" }
-
+sqliteassethelper = { group = "com.readystatesoftware.sqliteasset", name = "sqliteassethelper", version.ref = "sqliteassethelper" }
 
 
 

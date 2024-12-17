@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="15sp"
+    android:fitsSystemWindows="true"
+    tools:context=".Fragment.CartFragment">
+
+    <TextView
+        android:id="@+id/no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Không có sản phẩm nào" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/main_background" />
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_Cart"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/Customer.ToolBar"
+        app:title="Giỏ hàng" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_cart"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_above="@+id/layout_bill"
+        android:layout_below="@+id/toolbar_Cart"
+        android:layout_marginBottom="5sp"
+        android:background="@android:color/transparent"
+        android:padding="10sp"
+        android:scrollbars="vertical" />
+
+    <LinearLayout
+        android:id="@+id/layout_bill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/layout_select_address"
+        android:layout_marginHorizontal="30sp"
+        android:layout_marginBottom="5sp"
+        android:background="@drawable/border"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="5sp">
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_weight="1"
+                android:text="Basket total"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/basketTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3sp"
+                    android:text="---"
+                    android:textSize="15sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="đ"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_marginHorizontal="10sp"
+            android:layout_marginBottom="5sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5sp">
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_weight="1"
+                android:text="Discount"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3sp"
+                    android:text="---"
+                    android:textSize="15sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="đ"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_marginHorizontal="10sp"
+            android:layout_marginBottom="5sp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp">
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_weight="1"
+                android:text="Total"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3sp"
+                    android:text="---"
+                    android:textSize="15sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="đ"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_select_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_order"
+        android:layout_marginHorizontal="30sp"
+        android:layout_marginBottom="5sp"
+        android:background="@drawable/border">
+
+        <ImageView
+            android:id="@+id/ic_select_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/location"
+            app:tint="@color/red"/>
+
+        <RelativeLayout
+            android:id="@+id/layout_selected_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/ic_next"
+            android:layout_toRightOf="@+id/ic_select_address">
+
+            <LinearLayout
+                android:id="@+id/layout_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name" />
+
+                <TextView
+                    android:id="@+id/line"
+                    android:layout_width="1sp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10sp"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/line"
+                    android:text="0364628275" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="dadad" />
+
+                <TextView
+                    android:id="@+id/ward_getPath"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ward_getPath" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/null_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="Bạn chưa thiết lập địa chỉ" />
+
+        <ImageView
+            android:id="@+id/ic_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/next_button" />
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_order"
+        android:layout_width="260sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5sp"
+        android:background="@drawable/button_rounded"
+        android:backgroundTint="@color/blue"
+        android:text="Đặt hàng"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</RelativeLayout>
