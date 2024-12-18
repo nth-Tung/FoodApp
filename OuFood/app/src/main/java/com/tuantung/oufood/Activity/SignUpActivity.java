@@ -123,7 +123,7 @@ public class SignUpActivity extends AppCompatActivity {
         Common.FIREBASE_DATABASE.getReference(Common.REF_USERS).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                User user = new User(userUid, edit_name.getText().toString().trim(), edit_phone.getText().toString().trim(), edit_email.getText().toString().trim(), " ", new ArrayList<>());
+                User user = new User(userUid, edit_name.getText().toString().trim(), edit_phone.getText().toString().trim(), edit_email.getText().toString().trim(), "https://res.cloudinary.com/dqe19i7og/image/upload/v1731659931/pngtree-account-avatar-user-abstract-circle-background-flat-color-icon-png-image_1650938_xqovwm.jpg", new ArrayList<>());
                 Common.FIREBASE_DATABASE.getReference(Common.REF_USERS).child(userUid).setValue(user);
             }
 

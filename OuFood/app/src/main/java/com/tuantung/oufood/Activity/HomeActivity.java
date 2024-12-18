@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.tuantung.oufood.Fragment.AccountFragment;
+import com.tuantung.oufood.Fragment.CartFragment;
 import com.tuantung.oufood.Fragment.MenuFragment;
 import com.tuantung.oufood.R;
 import com.tuantung.oufood.common.Common;
@@ -53,6 +54,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void getVariable() {
         navMenu.setOnClickListener(v -> replaceFragment(new MenuFragment()));
+
+        navCart.setOnClickListener(v -> replaceFragment(new CartFragment()));
 //
 //        navOrder.setOnClickListener(v -> replaceFragment(new OrderFragment()));
 

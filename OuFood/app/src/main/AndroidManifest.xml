@@ -26,9 +26,6 @@
             android:name=".Activity.SaleListActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.SaleListAvtivity"
-            android:exported="false" />
-        <activity
             android:name=".Activity.FoodListActivity"
             android:exported="false" />
         <activity
@@ -45,9 +42,6 @@
             android:exported="false" />
         <activity
             android:name=".Activity.EditPhoneUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.BaseActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.SignUpActivity"
