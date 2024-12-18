@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -14,10 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.tuantung.oufood.R;
 
-public class ForgotPasswordActivity extends BaseActivity {
+public class ForgotPasswordActivity extends AppCompatActivity {
     private MaterialToolbar toolbar;
     private AppCompatButton btn_xac_nhan;
     private TextInputEditText edit_email;
@@ -48,7 +50,7 @@ public class ForgotPasswordActivity extends BaseActivity {
     }
 
     private void sendNewPassword(String email) {
-        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
 //                CuteToast.ct(ForgotPasswordActivity.this, "Email đặt lại mật khẩu đã được gửi", Toast.LENGTH_SHORT, CuteToast.SUCCESS, true).show();
                 Toast.makeText(this, "Email đặt lại mật khẩu đã được gửi", Toast.LENGTH_SHORT).show();
@@ -60,7 +62,7 @@ public class ForgotPasswordActivity extends BaseActivity {
     }
 
     private void checkEmailIsExist(String email) {
-        mAuth.signInWithEmailAndPassword(email, "1").addOnCompleteListener(ForgotPasswordActivity.this, new OnCompleteListener<AuthResult>() {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, "1").addOnCompleteListener(ForgotPasswordActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {

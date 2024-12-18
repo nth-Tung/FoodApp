@@ -25,7 +25,7 @@ import com.tuantung.oufood.common.Common;
 
 import io.paperdb.Paper;
 
-public class SignInActivity extends BaseActivity {
+public class SignInActivity extends AppCompatActivity {
 
     private AppCompatButton btn_signin;
     private TextView tv_forgotPassword, tv_signupNow;
@@ -93,7 +93,7 @@ public class SignInActivity extends BaseActivity {
     }
 
     private void login(String email, String password) {
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(SignInActivity.this, task -> {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(SignInActivity.this, task -> {
             if (task.isSuccessful()) {
                 if (FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -24,7 +25,7 @@ import java.util.List;
 
 import io.paperdb.Paper;
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends AppCompatActivity {
     private ImageView navMenu;
     private ImageView navCart;
     private ImageView navOrder;

@@ -23,6 +23,9 @@
         android:theme="@style/Theme.OuFood"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.FoodListActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.FoodDetailActivity"
             android:exported="false" />
         <activity

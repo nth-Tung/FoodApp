@@ -20,37 +20,28 @@ import com.tuantung.oufood.Database.Database;
 import com.tuantung.oufood.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewholder>{
+public class SaleListAdapter extends RecyclerView.Adapter<SaleListAdapter.viewholder>{
     ArrayList<Food> items;
     Context context;
 
-    public FoodListAdapter(ArrayList<Food> items){
+    public SaleListAdapter(ArrayList<Food> items){
         this.items = items;
     }
-
-    public List<Food> getList() {
-        return items;
-    }
-
-    public void setList(ArrayList<Food> list) {
-        this.items = list;
-    }
-
     @NonNull
     @Override
-    public FoodListAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SaleListAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food,parent,false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food_sale,parent,false);
         return new viewholder(inflate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodListAdapter.viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull SaleListAdapter.viewholder holder, int position) {
         holder.textViewName.setText(items.get(position).getName());
         holder.textViewPrice.setText(items.get(position).getPrice()+"đ");
         holder.textViewStar.setText(""+items.get(position).getCountStars());
+        holder.textViewDiscount.setText(items.get(position).getDiscount()+"%\nOFF");
 
         Picasso.get()
                 .load(items.get(position).getURL()) // URL của ảnh
@@ -82,6 +73,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewho
         private TextView textViewName;
         private TextView textViewPrice;
         private TextView textViewStar;
+        private TextView textViewDiscount;
         private TextView textViewPlus;
 
         private ImageView pic;
@@ -91,6 +83,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewho
             textViewName = itemView.findViewById(R.id.textView_name);
             textViewPrice = itemView.findViewById(R.id.textView_price);
             textViewStar = itemView.findViewById(R.id.textView_star);
+            textViewDiscount = itemView.findViewById(R.id.textView_discount);
             textViewPlus = itemView.findViewById(R.id.textView_plus);
 
             pic = itemView.findViewById(R.id.pic);

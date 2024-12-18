@@ -31,7 +31,7 @@ public class Common {
 
     public static final int TOP_BEST_SELLER = 6;
 
-    public static String CURRENCY = "$";
+    public static String CURRENCY = "đ";
 
     public static final int NOTIFICATION_ID = 1;
     public static final String CHANNEL_CART = "1";

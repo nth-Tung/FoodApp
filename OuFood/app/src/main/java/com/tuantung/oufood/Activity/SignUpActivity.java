@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 
@@ -27,7 +28,7 @@ import com.tuantung.oufood.common.Common;
 
 import java.util.ArrayList;
 
-public class SignUpActivity extends BaseActivity {
+public class SignUpActivity extends AppCompatActivity {
     TextInputEditText edit_name, edit_email, edit_password, edit_confPass, edit_phone;
     AppCompatButton btn_signup;
     TextView tv_loginnow;
@@ -97,7 +98,7 @@ public class SignUpActivity extends BaseActivity {
 
     private void createAccount(String email, String password) {
         // [START create_user_with_email]
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
