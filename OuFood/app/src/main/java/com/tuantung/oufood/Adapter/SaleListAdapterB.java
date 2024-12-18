@@ -21,23 +21,23 @@ import com.tuantung.oufood.R;
 
 import java.util.ArrayList;
 
-public class SaleListAdapter extends RecyclerView.Adapter<SaleListAdapter.viewholder>{
+public class SaleListAdapterB extends RecyclerView.Adapter<SaleListAdapterB.viewholder>{
     ArrayList<Food> items;
     Context context;
 
-    public SaleListAdapter(ArrayList<Food> items){
+    public SaleListAdapterB(ArrayList<Food> items){
         this.items = items;
     }
     @NonNull
     @Override
-    public SaleListAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SaleListAdapterB.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food_sale_a,parent,false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food_sale_b,parent,false);
         return new viewholder(inflate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SaleListAdapter.viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull SaleListAdapterB.viewholder holder, int position) {
         holder.textViewName.setText(items.get(position).getName());
         holder.textViewPrice.setText(items.get(position).getPrice()+"đ");
         holder.textViewStar.setText(""+items.get(position).getCountStars());
