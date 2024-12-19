@@ -116,7 +116,7 @@ public class FoodDetailActivity extends AppCompatActivity {
 
 //        button cart
         button_cart.setOnClickListener(v -> {
-            Order order = new Order(foodId, currentFood.getName(), currentFood.getPrice(), edittext_quantity.getText() + "", currentFood.getDiscount(),"0");
+            Order order = new Order(foodId, currentFood.getName(), currentFood.getPrice(), edittext_quantity.getText() + "", currentFood.getDiscount());
             Database database1 = new Database(FoodDetailActivity.this);
             database1.addToCart(order);
             Toast.makeText(this, "Thêm thành công!", Toast.LENGTH_SHORT).show();

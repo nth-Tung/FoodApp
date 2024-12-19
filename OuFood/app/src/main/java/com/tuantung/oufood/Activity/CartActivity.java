@@ -1,5 +1,10 @@
 package com.tuantung.oufood.Activity;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -63,7 +68,12 @@ public class CartActivity extends AppCompatActivity {
         loadListCart();
 
         buttonOrder = findViewById(R.id.btn_order);
-//        clickBtn_order();
+        buttonOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickBtn_order();
+            }
+        });
 
     }
 
@@ -91,7 +101,6 @@ public class CartActivity extends AppCompatActivity {
             double discount = 0; // Giảm giá
             if (!orders.isEmpty()) {
                 for (Order order : orders) {
-                    if (order.getIsBuy().equals("1")) {
                         int price = Integer.parseInt(order.getPrice());
                         int quantity = Integer.parseInt(order.getQuantity());
                         int itemTotal = price * quantity;
@@ -100,7 +109,6 @@ public class CartActivity extends AppCompatActivity {
                         // Thêm logic giảm giá (nếu có discount)
                         discount += itemTotal * Integer.parseInt(order.getDiscount()) / 100.0; // Ví dụ giảm giá theo %
 
-                    }
                 }
                 textViewBasketTotal.setText(String.valueOf(basketTotal));
                 textViewDelivery.setText(String.valueOf(delivery));
@@ -116,28 +124,32 @@ public class CartActivity extends AppCompatActivity {
 //        if (diaChi == null) {
 //            CuteToast.ct(getBaseContext(), "Hãy chọn địa chỉ", Toast.LENGTH_SHORT, CuteToast.WARN, true).show();
 //        } else {
-            List<Order> list = database.getCarts();
-            boolean notEmpty = false;
-            for (Order i : list) {
-                if (i.getIsBuy().equals("1")) {
-                    notEmpty = true;
-                    break;
-                }
-            }
-            if (!notEmpty) {
-//                CuteToast.ct(getBaseContext(), "Không có sản phẩm nào", Toast.LENGTH_SHORT, CuteToast.WARN, true).show();
-            } else {
                 String id = String.valueOf(System.currentTimeMillis());
                 Request request = new Request(id, Common.currentUser.getIdUser(), textViewTotal_a.getText().toString(), cart, new AnAddress("OU", false, "Tùng", "0912458796", AddressType.HOME, new Ward("70", "fsf", "fds", "fsd")), "0");
-//            scheduleNotification(Common.DELAY_TIME, id);
+                scheduleNotification(Common.DELAY_TIME, id);
                 Common.FIREBASE_DATABASE.getReference(Common.REF_REQUESTS).child(id).setValue(request);
                 database.cleanCart();
 //            CuteToast.ct(getBaseContext(), "Thank you", Toast.LENGTH_SHORT, CuteToast.SUCCESS, true).show();
                 Toast.makeText(this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
                 finish();
 //        }
-            }
-//        }
+    }
+
+    private void scheduleNotification(int delayTime, String idRequest) {
+        Intent notificationIntent = new Intent(CartActivity.this, Notification.class);
+
+        notificationIntent.putExtra("idRequest", idRequest);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(CartActivity.this, Common.NOTIFICATION_ID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        if (alarmManager != null) {
+            long triggerTime = System.currentTimeMillis() + delayTime; // Thời gian kích hoạt
+            alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+
+        }
+
     }
 
     @Override

@@ -67,16 +67,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
             }
         });
 
-        holder.isBuy.setChecked(items.get(position).getIsBuy().equals("1") ? true : false);
         holder.textViewName.setText(items.get(position).getProductName());
         holder.textViewPrice.setText(items.get(position).getPrice());
         holder.editTextQuantity.setText(items.get(position).getQuantity());
 
-        holder.isBuy.setOnClickListener(v -> {
-            items.get(position).setIsBuy(holder.isBuy.isChecked() == true ? "1" : "0");
-            new Database(context).updateIsBuy(items.get(position).getProductId(), items.get(position).getIsBuy());
-            ((CartActivity) context).updateBill();
-        });
 
         holder.buttonIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +109,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
 
     public class Viewholder extends RecyclerView.ViewHolder{
         ImageView pic;
-        CheckBox isBuy;
         EditText editTextQuantity;
         TextView textViewName;
         TextView textViewPrice;
@@ -125,7 +118,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             pic = itemView.findViewById(R.id.pic);
-            isBuy = itemView.findViewById(R.id.buy);
             editTextQuantity =itemView.findViewById(R.id.editText_quantity);
             textViewName = itemView.findViewById(R.id.textView_name);
             textViewPrice = itemView.findViewById(R.id.textView_price);

@@ -67,7 +67,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewho
         holder.textViewPlus.setOnClickListener(v -> {
 //            CuteToast.ct(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT, CuteToast.SUCCESS, true).show();
             Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
-            Order order = new Order(items.get(position).getId(), items.get(position).getName(), items.get(position).getPrice(), "1", items.get(position).getDiscount(), "0");
+            Order order = new Order(items.get(position).getId(), items.get(position).getName(), items.get(position).getPrice(), "1", items.get(position).getDiscount());
             Database database1 = new Database(context);
             database1.addToCart(order);
         });

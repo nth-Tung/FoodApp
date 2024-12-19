@@ -6,17 +6,15 @@ public class Order {
     private String Price;
     private String Quantity;
     private String Discount;
-    private String isBuy;
     private boolean isRate = false;
     private int countStars = 5;
 
-    public Order(int countStars, String discount, String isBuy, boolean isRate, String price, String productId, String productName, String quantity) {
+    public Order(int countStars, String discount, boolean isRate, String price, String productId, String productName, String quantity) {
         this.countStars = countStars;
         this.isRate = isRate;
         this.ProductId = productId;
         this.ProductName = productName;
         this.Price = price;
-        this.isBuy = isBuy;
         this.Quantity = quantity;
         this.Discount = discount;
     }
@@ -32,13 +30,12 @@ public class Order {
         Discount = food.getDiscount();
     }
 
-    public Order(String productId, String productName, String price, String quantity, String discount, String isBuy) {
+    public Order(String productId, String productName, String price, String quantity, String discount) {
         ProductId = productId;
         ProductName = productName;
         Price = price;
         Quantity = quantity;
         Discount = discount;
-        this.isBuy = isBuy;
     }
 
     @Override
@@ -49,19 +46,12 @@ public class Order {
                 ", Price='" + Price + '\'' +
                 ", Quantity='" + Quantity + '\'' +
                 ", Discount='" + Discount + '\'' +
-                ", isBuy='" + isBuy + '\'' +
                 ", isRate=" + isRate +
                 ", countStars=" + countStars +
                 '}';
     }
 
-    public String getIsBuy() {
-        return isBuy;
-    }
 
-    public void setIsBuy(String buy) {
-        isBuy = buy;
-    }
 
     public String getProductId() {
         return ProductId;

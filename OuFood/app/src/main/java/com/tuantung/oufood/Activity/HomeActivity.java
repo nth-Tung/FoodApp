@@ -1,5 +1,6 @@
 package com.tuantung.oufood.Activity;
 
+import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -75,6 +76,11 @@ public class HomeActivity extends AppCompatActivity {
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             permissionsToRequest.add(android.Manifest.permission.ACCESS_COARSE_LOCATION);
+        }
+
+        //Kiểm tra quyền thông báo
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            permissionsToRequest.add(android.Manifest.permission.POST_NOTIFICATIONS);
         }
 
         // Nếu còn quyền chưa được cấp, yêu cầu tất cả trong một lần

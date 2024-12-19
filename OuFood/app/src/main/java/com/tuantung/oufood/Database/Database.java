@@ -27,7 +27,7 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         SQLiteQueryBuilder sqLiteQueryBuilder = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"ProductName", "ProductId", "Price", "Quantity", "Discount", "isBuy"};
+        String[] sqlSelect = {"ProductName", "ProductId", "Price", "Quantity", "Discount"};
         String sqlTable = "OrderDetail";
 
         sqLiteQueryBuilder.setTables(sqlTable);
@@ -41,11 +41,10 @@ public class Database extends SQLiteAssetHelper {
                 int priceIndex = cursor.getColumnIndex("Price");
                 int quantityIndex = cursor.getColumnIndex("Quantity");
                 int discountIndex = cursor.getColumnIndex("Discount");
-                int isBuyIndex = cursor.getColumnIndex("isBuy");
 
                 // Kiểm tra nếu các cột đều tồn tại
-                if (productIdIndex != -1 && priceIndex != -1 && productNameIndex != -1 && quantityIndex != -1 && discountIndex != -1 && isBuyIndex != -1) {
-                    result.add(new Order(cursor.getString(productIdIndex), cursor.getString(productNameIndex), cursor.getString(priceIndex), cursor.getString(quantityIndex), cursor.getString(discountIndex), cursor.getString(isBuyIndex)));
+                if (productIdIndex != -1 && priceIndex != -1 && productNameIndex != -1 && quantityIndex != -1 && discountIndex != -1) {
+                    result.add(new Order(cursor.getString(productIdIndex), cursor.getString(productNameIndex), cursor.getString(priceIndex), cursor.getString(quantityIndex), cursor.getString(discountIndex)));
                 } else {
 
                 }
@@ -82,7 +81,6 @@ public class Database extends SQLiteAssetHelper {
             values.put("Price", order.getPrice());
             values.put("Quantity", order.getQuantity());
             values.put("Discount", order.getDiscount());
-            values.put("isBuy", order.getIsBuy());
             db.insert("OrderDetail", null, values);
         }
         cursor.close(); // Đóng Cursor sau khi sử dụng
@@ -100,16 +98,7 @@ public class Database extends SQLiteAssetHelper {
         db.close();
     }
 
-    public void updateIsBuy(String productId, String buy) {
-        SQLiteDatabase db = getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put("isBuy", buy);
-
-        db.update("OrderDetail", values, "ProductId = ?", new String[]{productId});
-
-        db.close();
-    }
 
 
     public void removeItems(Order order) {
