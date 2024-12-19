@@ -40,6 +40,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     EditText edittext_quantity;
     RatingBar ratingBar;
     ImageView button_back;
+    TextView textViewPriceTotal;
 
 
     AppCompatButton button_cart;
@@ -67,6 +68,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         food_image_detail = findViewById(R.id.food_image_detail);
         ratingBar = findViewById(R.id.ratingBar);
         button_back= findViewById(R.id.button_back);
+        textViewPriceTotal = findViewById(R.id.textView_priceTotal);
 
 //         init number picker
         btn_increase = findViewById(R.id.button_Increase);
@@ -84,14 +86,18 @@ public class FoodDetailActivity extends AppCompatActivity {
             int quantity = Integer.parseInt(edittext_quantity.getText().toString());
             if (quantity > 1) {
                 quantity -= 1;
-                edittext_quantity.setText(quantity + "");
+                edittext_quantity.setText(quantity+"");
             }
+            double price = Integer.parseInt(currentFood.getPrice());
+            textViewPriceTotal.setText(String.valueOf(price*quantity));
         });
 
         btn_increase.setOnClickListener(v -> {
             int quantity = Integer.parseInt(edittext_quantity.getText().toString());
             quantity += 1;
             edittext_quantity.setText(quantity + "");
+            double price = Integer.parseInt(currentFood.getPrice());
+            textViewPriceTotal.setText(String.valueOf(price*quantity));
         });
 
         edittext_quantity.addTextChangedListener(new TextWatcher() {
@@ -143,11 +149,11 @@ public class FoodDetailActivity extends AppCompatActivity {
 
                 food_name_detail.setText(currentFood.getName());
 
-                food_price_detail.setText(currentFood.getPrice()+"đ");
+                food_price_detail.setText(currentFood.getPrice());
 
                 food_description_detail.setText(currentFood.getDescription());
                 ratingBar.setRating((float) currentFood.getCountStars());
-
+                textViewPriceTotal.setText(currentFood.getPrice());
             }
 
             @Override
