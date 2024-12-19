@@ -1,10 +1,7 @@
 package com.tuantung.oufood.Activity;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 
@@ -14,12 +11,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.tuantung.oufood.Fragment.AccountFragment;
-import com.tuantung.oufood.Fragment.CartFragment;
 import com.tuantung.oufood.Fragment.MenuFragment;
 import com.tuantung.oufood.R;
-import com.tuantung.oufood.common.Common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +22,6 @@ import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity {
     private ImageView navMenu;
-    private ImageView navCart;
     private ImageView navOrder;
     private ImageView navAccount;
 
@@ -43,7 +36,6 @@ public class HomeActivity extends AppCompatActivity {
         replaceFragment(new MenuFragment());
 
         navMenu = findViewById(R.id.nav_menu);
-        navCart = findViewById(R.id.nav_cart);
         navOrder = findViewById(R.id.nav_order);
         navAccount = findViewById(R.id.nav_account);
 
@@ -55,7 +47,6 @@ public class HomeActivity extends AppCompatActivity {
     private void getVariable() {
         navMenu.setOnClickListener(v -> replaceFragment(new MenuFragment()));
 
-        navCart.setOnClickListener(v -> replaceFragment(new CartFragment()));
 //
 //        navOrder.setOnClickListener(v -> replaceFragment(new OrderFragment()));
 

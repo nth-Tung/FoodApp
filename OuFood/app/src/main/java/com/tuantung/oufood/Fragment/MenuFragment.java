@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.tuantung.oufood.Activity.CartActivity;
 import com.tuantung.oufood.Activity.SaleListActivity;
 import com.tuantung.oufood.Adapter.CategoryAdapter;
 import com.tuantung.oufood.Adapter.FoodListAdapter;
@@ -41,11 +42,21 @@ public class MenuFragment extends Fragment {
     private ProgressBar mProgressBarCategory;
     private ProgressBar mProgressBarBestFood;
     private TextView mButtonFlashSale;
+    private ImageView imageView_cart;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
+
+        imageView_cart = view.findViewById(R.id.imageView_cart);
+        imageView_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireActivity(), CartActivity.class));
+            }
+        });
 
 
         //button flashSale

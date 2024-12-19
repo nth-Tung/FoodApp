@@ -1,11 +1,13 @@
 package com.tuantung.oufood.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.tuantung.oufood.Class.Food;
 import com.tuantung.oufood.Class.Order;
+import com.tuantung.oufood.Database.Database;
 import com.tuantung.oufood.R;
 import com.tuantung.oufood.common.Common;
 
@@ -25,14 +28,7 @@ import java.util.List;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
     List<Order> items;
     Context context;
-//    private ManagmentCart managmentCart;
-//    ChangeNumberItemsListener changeNumberItemsListener;
 
-//    public CartAdapter(ArrayList<Foods> list, Context context, ChangeNumberItemsListener changeNumberItemsListener){
-//        this.list = list;
-//        managmentCart = new ManagmentCart(context);
-//        this.changeNumberItemsListener = changeNumberItemsListener;
-//    }
 
     public CartAdapter(List<Order> items){
         this.items = items;
@@ -65,19 +61,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
             }
         });
 
-//        holder.buttonPlus.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                notifyDataSetChanged();
-//            }
-//        });
-//
-//        holder.buttonMinus.setOnClickListener(v -> {
-//            managmentCart.minusNumberItem(list, position, () -> {
-//                notifyDataSetChanged();
-//                changeNumberItemsListener.change();
-//            });
-//        });
+
     }
 
     @Override
