@@ -49,7 +49,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewho
     @Override
     public void onBindViewHolder(@NonNull FoodListAdapter.viewholder holder, int position) {
         holder.textViewName.setText(items.get(position).getName());
-        holder.textViewPrice.setText(items.get(position).getPrice()+"đ");
+        holder.textViewPrice.setText(items.get(position).getPrice());
         holder.textViewStar.setText(""+items.get(position).getCountStars());
 
         Picasso.get()

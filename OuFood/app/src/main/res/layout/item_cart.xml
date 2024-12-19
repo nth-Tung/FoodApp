@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <CheckBox
-            android:id="@+id/button_checkBox"
+            android:id="@+id/buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +22,7 @@
 
         <ImageView
             android:id="@+id/pic"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="111dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="10dp"
@@ -53,53 +53,65 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_price"
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
-                android:text="0đ"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="đ"
                 android:textColor="@color/blue"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView_name"
-                app:layout_constraintTop_toBottomOf="@+id/textView_name" />
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_price"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:text="0"
+                android:layout_marginStart="2dp"
+                android:textColor="@color/blue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/textView3" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="5dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@+id/textView_price"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView_price"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toTopOf="@+id/textView_price">
 
 
-                <TextView
-                    android:id="@+id/button_increase"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_decrease_cart"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
+                    android:text="-"
                     android:background="@drawable/border"
                     android:gravity="center"
-                    android:text="-"
                     android:textColor="@color/blue"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView_quantity"
+                <EditText
+                    android:id="@+id/editText_quantity"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_marginStart="8dp"
                     android:gravity="center"
-                    android:text="0"
+                    android:text="1"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@null"/>
 
-                <TextView
-                    android:id="@+id/button_decrease"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_increase_cart"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_marginStart="8dp"

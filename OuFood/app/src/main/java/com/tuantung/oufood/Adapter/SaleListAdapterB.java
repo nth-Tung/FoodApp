@@ -39,7 +39,7 @@ public class SaleListAdapterB extends RecyclerView.Adapter<SaleListAdapterB.view
     @Override
     public void onBindViewHolder(@NonNull SaleListAdapterB.viewholder holder, int position) {
         holder.textViewName.setText(items.get(position).getName());
-        holder.textViewPrice.setText(items.get(position).getPrice()+"đ");
+        holder.textViewPrice.setText(items.get(position).getPrice());
         holder.textViewStar.setText(""+items.get(position).getCountStars());
         holder.textViewDiscount.setText(items.get(position).getDiscount()+"%\nOFF");
 
