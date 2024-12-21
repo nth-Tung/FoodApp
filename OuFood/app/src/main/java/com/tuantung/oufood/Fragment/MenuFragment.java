@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.tuantung.oufood.Activity.CartActivity;
 import com.tuantung.oufood.Activity.SaleListActivity;
+import com.tuantung.oufood.Activity.SearchActivity;
 import com.tuantung.oufood.Adapter.CategoryAdapter;
 import com.tuantung.oufood.Adapter.FoodListAdapter;
 import com.tuantung.oufood.Adapter.SaleListAdapter;
@@ -43,6 +46,7 @@ public class MenuFragment extends Fragment {
     private ProgressBar mProgressBarBestFood;
     private TextView mButtonFlashSale;
     private ImageView imageView_cart;
+    private TextView searchView;
 
 
     @Override
@@ -83,8 +87,60 @@ public class MenuFragment extends Fragment {
         recyclerView_all_food = view.findViewById(R.id.recyclerView_all_food);
         setupRecyclerViewAllFood();
 
+
+
+
+        searchView = view.findViewById(R.id.searchView);
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireActivity(), SearchActivity.class));
+            }
+        });
+//
+//
+//        searchView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//                    @Override
+//                    public boolean onQueryTextSubmit(String query) {
+//                        if (query.trim().isEmpty()) {
+//                            frameLayoutSearch.setVisibility(View.GONE);
+//                        } else {
+//                            homeSearchFragment.setKeySearch(query.toLowerCase());
+//                            frameLayoutSearch.setVisibility(View.VISIBLE);
+//                            getChildFragmentManager().beginTransaction().replace(R.id.fragment_search,homeSearchFragment).commit();
+//                        }
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean onQueryTextChange(String newText) {
+//                        if (newText.trim().isEmpty()) {
+//                            frameLayoutSearch.setVisibility(View.GONE);
+//                        } else {
+//                            homeSearchFragment.setKeySearch(newText.toLowerCase());
+//                            frameLayoutSearch.setVisibility(View.VISIBLE);
+//                            getChildFragmentManager().beginTransaction()
+//                                    .replace(R.id.fragment_search, homeSearchFragment)
+//                                    .commit();
+//                        }
+//                        return true;
+//                    }
+//                });
+//            }
+//        });
+
+
+
+
         return view;
     }
+
+
+
+
 
     private void setupRecyclerCategories() {
         mProgressBarCategory.setVisibility(View.VISIBLE);
@@ -99,13 +155,12 @@ public class MenuFragment extends Fragment {
                 }
 
                 if(list.size()>0){
-                    recyclerView_categories.setLayoutManager(new GridLayoutManager(requireActivity(),4));
+                    recyclerView_categories.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));
                     RecyclerView.Adapter adapter = new CategoryAdapter(list);
                     recyclerView_categories.setAdapter(adapter);
                 }
                 mProgressBarCategory.setVisibility(View.GONE);
-//                CategoryAdapter adapter = new CategoryAdapter(list, getContext());
-//                SetUpRecyclerView.setupGridLayout(getContext(), recyclerView_categories, adapter, 2, androidx.recyclerview.widget.RecyclerView.HORIZONTAL);
+
             }
 
             @Override

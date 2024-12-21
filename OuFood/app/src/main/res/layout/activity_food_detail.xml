@@ -105,7 +105,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/food_description_detail"
+                android:id="@+id/textView_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -117,13 +117,13 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView_description"
+                android:id="@+id/food_description_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Delicious!"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="A timeless classic, the Margherita pizza captures the essence of Italian simplicity. The thin, crispy crust is adorned with a luscious layer of fresh tomato sauce, delicate mozzarella cheese, and fragrant basil leaves. This pizza is a celebration of flavors in every bite, delivering a taste of Italy to your palate."
                 android:textSize="14sp" />
 
             <LinearLayout

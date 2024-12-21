@@ -3,6 +3,7 @@ package com.tuantung.oufood.Activity;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 
@@ -39,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
         navMenu = findViewById(R.id.nav_menu);
         navOrder = findViewById(R.id.nav_order);
         navAccount = findViewById(R.id.nav_account);
+
 
         requestPermissions();
 //        replaceFragment(new MenuFragment());

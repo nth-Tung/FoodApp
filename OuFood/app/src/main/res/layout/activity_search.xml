@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@color/white"
     tools:context=".Activity.FoodListActivity">
 
     <ImageView
@@ -20,10 +21,11 @@
         android:orientation="vertical">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_FoodList"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/menu_food_list"
+            app:title="Tìm món ngon ở đây"
             app:navigationIcon="@drawable/back_button" />
 
         <TextView

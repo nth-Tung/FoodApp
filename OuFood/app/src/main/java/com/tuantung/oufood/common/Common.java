@@ -21,7 +21,7 @@ public class Common {
     public static User currentUser;
 
     public static final FirebaseDatabase FIREBASE_DATABASE = FirebaseDatabase.getInstance();
-    public static final String REF_CATEGORIES = "Category";
+    public static final String REF_CATEGORIES = "Categories";
     public static final String REF_FOODS = "Foods";
     public static final String REF_USERS = "User";
     public static final String REF_REQUESTS = "Requests";

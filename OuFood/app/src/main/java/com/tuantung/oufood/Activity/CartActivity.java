@@ -97,7 +97,7 @@ public class CartActivity extends AppCompatActivity {
         try (Database database = new Database(getBaseContext())) {
             List<Order> orders = database.getCarts();
             double basketTotal = 0; // Tổng giá trị
-            double delivery = 1;
+            double delivery = 10000;
             double discount = 0; // Giảm giá
             if (!orders.isEmpty()) {
                 for (Order order : orders) {
