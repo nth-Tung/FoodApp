@@ -28,6 +28,7 @@ import com.tuantung.oufood.Class.Food;
 import com.tuantung.oufood.R;
 import com.tuantung.oufood.common.Common;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,6 +90,15 @@ public class FoodListActivity extends AppCompatActivity {
 
     }
 
+    public static String removeDiacritics(String input) {
+        // Chuẩn hóa chuỗi Unicode thành dạng Normal Form Decomposed (NFD)
+        String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
+
+        // Loại bỏ các dấu bằng cách chỉ giữ lại các ký tự không thuộc nhóm ký tự tổ hợp (diacritics)
+        return normalized.replaceAll("\\p{M}", "");
+    }
+
+
     private void filter(String text) {
         data_foods.orderByChild("categoryId").equalTo(categoryId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -98,7 +108,7 @@ public class FoodListActivity extends AppCompatActivity {
                 Food food;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     food = dataSnapshot.getValue(Food.class);
-                    if (food.getName().toLowerCase().trim().contains(text)) {
+                    if (removeDiacritics(food.getName().toLowerCase().trim()).contains(text)||food.getName().toLowerCase().trim().contains(text)) {
                         food.setId(dataSnapshot.getKey());
                         list.add(food);
                     }
