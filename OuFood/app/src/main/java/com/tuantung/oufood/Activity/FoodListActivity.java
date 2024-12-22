@@ -1,6 +1,7 @@
 package com.tuantung.oufood.Activity;
 
 import android.os.Bundle;
+import android.text.Selection;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import com.tuantung.oufood.common.Common;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FoodListActivity extends AppCompatActivity {
@@ -143,6 +145,8 @@ public class FoodListActivity extends AppCompatActivity {
                     food.setId(dataSnapshot.getKey());
                     list.add(food);
                 }
+
+                Collections.shuffle(list);
 
                 if (list.size() > 0) {
                     recyclerView.setLayoutManager(new LinearLayoutManager(FoodListActivity.this, LinearLayoutManager.VERTICAL, false));

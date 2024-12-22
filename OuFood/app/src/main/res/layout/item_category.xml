@@ -26,7 +26,7 @@
         <TextView
             android:id="@+id/textView_nameCategory"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             android:layout_marginTop="8dp"
             android:text="title"
             android:textColor="@color/black"

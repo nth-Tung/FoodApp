@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.tuantung.oufood.Fragment.AccountFragment;
 import com.tuantung.oufood.Fragment.MenuFragment;
+import com.tuantung.oufood.Fragment.OrderFragment;
 import com.tuantung.oufood.R;
 
 import java.util.ArrayList;
@@ -50,8 +51,7 @@ public class HomeActivity extends AppCompatActivity {
     private void getVariable() {
         navMenu.setOnClickListener(v -> replaceFragment(new MenuFragment()));
 
-//
-//        navOrder.setOnClickListener(v -> replaceFragment(new OrderFragment()));
+        navOrder.setOnClickListener(v -> replaceFragment(new OrderFragment()));
 
         navAccount.setOnClickListener(v -> replaceFragment(new AccountFragment()));
     }

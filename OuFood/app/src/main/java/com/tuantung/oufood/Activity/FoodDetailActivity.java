@@ -152,7 +152,13 @@ public class FoodDetailActivity extends AppCompatActivity {
                 food_price_detail.setText(currentFood.getPrice());
 
                 food_description_detail.setText(currentFood.getDescription());
-                ratingBar.setRating((float) currentFood.getCountStars());
+                if(currentFood.getCountRating()>0){
+                    ratingBar.setRating((float) currentFood.getCountStars()/currentFood.getCountRating());
+                }
+                else{
+                    ratingBar.setRating(5);
+                }
+
                 textViewPriceTotal.setText(currentFood.getPrice());
             }
 

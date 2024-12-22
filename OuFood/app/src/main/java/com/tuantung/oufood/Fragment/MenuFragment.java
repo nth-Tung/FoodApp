@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,6 +37,7 @@ import com.tuantung.oufood.R;
 import com.tuantung.oufood.common.Common;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -184,7 +186,11 @@ public class MenuFragment extends Fragment {
                 }
 
 
-                list.sort((a, b) -> -a.sortForBestSeller(b));
+                for (int i = list.size() - 1; i >= 0; i--) {
+                    if (list.get(i).getDiscount().equals("0")) {
+                        list.remove(i);
+                    }
+                }
 
                 for (int i = list.size() - 1; i >= Common.TOP_BEST_SELLER; i--) {
                     list.remove(i);
@@ -197,8 +203,6 @@ public class MenuFragment extends Fragment {
                 }
                 mProgressBarBestFood.setVisibility(View.GONE);
 
-//                BestSellerAdapter bestSellerAdapter = new BestSellerAdapter(getContext(), list);
-//                SetUpRecyclerView.setupGridLayout(getContext(), recyclerView_bestSeller, bestSellerAdapter, 1, RecyclerView.HORIZONTAL);
             }
 
             @Override
@@ -212,6 +216,7 @@ public class MenuFragment extends Fragment {
         Common.FIREBASE_DATABASE.getReference(Common.REF_FOODS).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 ArrayList<Food> list = new ArrayList<>();
                 Food food;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -219,22 +224,21 @@ public class MenuFragment extends Fragment {
                     food.setId(dataSnapshot.getKey());
                     list.add(food);
                 }
+
+                Collections.shuffle(list);
+
+                for(int i = list.size() - 1;i>=0;i--){
+                    if(!list.get(i).getDiscount().equals("0"))
+                        list.remove(i);
+                }
+
+
                 if(list.size()>0){
                     recyclerView_all_food.setLayoutManager(new LinearLayoutManager(requireActivity(),LinearLayoutManager.VERTICAL,false));
                     RecyclerView.Adapter adapter = new FoodListAdapter(list);
                     recyclerView_all_food.setAdapter(adapter);
                 }
 
-//                list.sort((a, b) -> a.sortForBestSeller(b));
-//
-//                List<Food> listAdapter = new ArrayList<>();
-//
-//                for (int i = Common.TOP_BEST_SELLER; i < list.size(); i++) {
-//                    listAdapter.add(list.get(i));
-//                }
-//
-//                FoodListAdapter foodAdapter = new FoodListAdapter(listAdapter, getContext());
-//                SetUpRecyclerView.setupGridLayout(getContext(), recyclerView_all_food, foodAdapter, 2, RecyclerView.VERTICAL);
             }
 
             @Override

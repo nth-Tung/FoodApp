@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="180dp"
-    android:layout_height="220dp"
+    android:layout_height="225dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="15dp"
     android:background="@color/gray">
@@ -30,6 +30,7 @@
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:text="Tên sản phẩm"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/pic"
             app:layout_constraintStart_toStartOf="@+id/pic"

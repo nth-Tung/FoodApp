@@ -29,6 +29,7 @@ import com.tuantung.oufood.common.Common;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
@@ -62,6 +63,9 @@ public class SearchActivity extends AppCompatActivity {
                     food.setId(dataSnapshot.getKey());
                     list.add(food);
                 }
+
+                Collections.shuffle(list);
+
                 if(list.size()>0){
                     recyclerView.setLayoutManager(new GridLayoutManager(SearchActivity.this,2));
                     adapter = new FilterFoodsAdapter(list);
@@ -98,6 +102,8 @@ public class SearchActivity extends AppCompatActivity {
                         list.add(food);
                     }
                 }
+
+                Collections.shuffle(list);
 
                 if (list.isEmpty()) {
                     tv_noData.setVisibility(View.VISIBLE);

@@ -50,7 +50,20 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewho
     public void onBindViewHolder(@NonNull FoodListAdapter.viewholder holder, int position) {
         holder.textViewName.setText(items.get(position).getName());
         holder.textViewPrice.setText(items.get(position).getPrice());
-        holder.textViewStar.setText(""+items.get(position).getCountStars());
+        if(items.get(position).getDiscount().equals("0")){
+            holder.textViewDiscount.setVisibility(View.GONE);
+        }else{
+            holder.textViewDiscount.setText(items.get(position).getDiscount()+"%\nOFF");
+        }
+
+        if(items.get(position).getCountRating() > 0){
+            holder.textViewStar.setText(""+items.get(position).getCountStars()/(items.get(position).getCountRating()*1.0));
+        }
+        else{
+            holder.textViewStar.setText("5");
+        }
+
+
 
         Picasso.get()
                 .load(items.get(position).getURL()) // URL của ảnh
@@ -83,6 +96,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewho
         private TextView textViewPrice;
         private TextView textViewStar;
         private TextView textViewPlus;
+        private TextView textViewDiscount;
 
         private ImageView pic;
 
@@ -92,6 +106,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewho
             textViewPrice = itemView.findViewById(R.id.textView_price);
             textViewStar = itemView.findViewById(R.id.textView_star);
             textViewPlus = itemView.findViewById(R.id.textView_plus);
+            textViewDiscount = itemView.findViewById(R.id.textView_discount);
 
             pic = itemView.findViewById(R.id.pic);
         }
