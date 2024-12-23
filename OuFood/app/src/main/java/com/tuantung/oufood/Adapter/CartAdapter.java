@@ -57,7 +57,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Food currentFood = snapshot.getValue(Food.class);
-                String pathURL = currentFood.getURL();
+                String pathURL = currentFood.getUrl();
                 Picasso.get().load(pathURL).fit().centerCrop().into(holder.pic);
             }
 

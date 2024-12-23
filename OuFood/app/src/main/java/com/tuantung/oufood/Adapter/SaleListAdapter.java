@@ -44,7 +44,7 @@ public class SaleListAdapter extends RecyclerView.Adapter<SaleListAdapter.viewho
         holder.textViewDiscount.setText(items.get(position).getDiscount()+"%\nOFF");
 
         Picasso.get()
-                .load(items.get(position).getURL()) // URL của ảnh
+                .load(items.get(position).getUrl()) // URL của ảnh
                 .fit() // Tự động điều chỉnh kích thước ảnh để khớp với ImageView
                 .centerCrop() // Cắt và điều chỉnh trung tâm ảnh
                 .into(holder.pic); // ImageView của bạn

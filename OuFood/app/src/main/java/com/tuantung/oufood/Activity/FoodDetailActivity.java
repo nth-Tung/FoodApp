@@ -143,7 +143,7 @@ public class FoodDetailActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 currentFood = snapshot.getValue(Food.class);
 
-                String pathURL = currentFood.getURL() != null ? currentFood.getURL() : "";
+                String pathURL = currentFood.getUrl() != null ? currentFood.getUrl() : "";
                 Picasso picasso = new Picasso.Builder(FoodDetailActivity.this).build();
                 picasso.load(pathURL).into(food_image_detail);
 

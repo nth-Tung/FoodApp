@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5sp"
-        android:text="Completed/Canceled" />
+        android:text="thành công/ thất bại" />
 
     <LinearLayout
         android:id="@+id/info"
@@ -58,13 +58,10 @@
                     android:gravity="center_vertical"
                     android:text="1734416580248" />
 
-                <TextView
-                    android:layout_width="10sp"
-                    android:layout_height="10sp"
-                    android:layout_marginHorizontal="10dp"
-                    android:backgroundTint="@color/gray" />
+
 
                 <TextView
+                    android:layout_marginLeft="10dp"
                     android:id="@+id/item_items"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

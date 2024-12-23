@@ -54,6 +54,10 @@ public class Food{
         this.countRating = countRating;
     }
 
+    @Override
+    public String toString() {
+        return "Food{" + "id='" + id + '\'' + ", Name='" + name + '\'' + ", CategoryId='" + categoryId + '\'' + '}';
+    }
 
     public String getId() {
         return id;
@@ -61,38 +65,6 @@ public class Food{
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getURL() {
-        return url;
-    }
-
-    public void setURL(String URL) {
-        this.url = URL;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(String discount) {
-        this.discount = discount;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getCategoryId() {
@@ -111,6 +83,30 @@ public class Food{
         this.name = name;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
     public String getPrice() {
         return price;
     }
@@ -119,12 +115,12 @@ public class Food{
         this.price = price;
     }
 
-    public int getCountStars() {
-        return countStars;
+    public String getUrl() {
+        return url;
     }
 
-    public void setCountStars(int countStars) {
-        this.countStars = countStars;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public int getCountRating() {
@@ -135,8 +131,11 @@ public class Food{
         this.countRating = countRating;
     }
 
-    @Override
-    public String toString() {
-        return "Food{" + "id='" + id + '\'' + ", Name='" + name + '\'' + ", CategoryId='" + categoryId + '\'' + '}';
+    public int getCountStars() {
+        return countStars;
+    }
+
+    public void setCountStars(int countStars) {
+        this.countStars = countStars;
     }
 }

@@ -46,7 +46,7 @@ public class FilterFoodsAdapter extends RecyclerView.Adapter<FilterFoodsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull FilterFoodsAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Picasso.get().load(items.get(position).getURL()).fit().centerCrop().into(holder.pic);
+        Picasso.get().load(items.get(position).getUrl()).fit().centerCrop().into(holder.pic);
         holder.name.setText(items.get(position).getName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
