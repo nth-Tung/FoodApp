@@ -38,7 +38,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
     List<Order> items;
     Context context;
 
-    public CartAdapter(List<Order> items){
+    public CartAdapter(List<Order> items) {
         this.items = items;
     }
 
@@ -47,7 +47,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
     @Override
     public CartAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View inflate = LayoutInflater.from(context).inflate(R.layout.item_cart,parent,false);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.item_cart, parent, false);
         return new Viewholder(inflate);
     }
 
@@ -89,7 +89,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
             @Override
             public void onClick(View v) {
                 int quantity = Integer.parseInt(holder.editTextQuantity.getText().toString());
-                if(quantity>1){
+                if (quantity > 1) {
                     quantity -= 1;
                     new Database(context).updateQuantity(items.get(position).getProductId(), holder.editTextQuantity.getText().toString());
 //                    update quantiry to quantity_cart_item
@@ -97,6 +97,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
 //                    update quantity to list_order
                     items.get(position).setQuantity(String.valueOf(quantity));
                     ((CartActivity) context).updateBill();
+                } else {
+                    if (quantity == 1) {
+                        new Database(context).removeItems(items.get(position));
+                        ((CartActivity) context).loadListCart();
+                    }
                 }
             }
         });
@@ -107,7 +112,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
         return items.size();
     }
 
-    public class Viewholder extends RecyclerView.ViewHolder{
+    public class Viewholder extends RecyclerView.ViewHolder {
         ImageView pic;
         EditText editTextQuantity;
         TextView textViewName;
@@ -118,7 +123,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             pic = itemView.findViewById(R.id.pic);
-            editTextQuantity =itemView.findViewById(R.id.editText_quantity);
+            editTextQuantity = itemView.findViewById(R.id.editText_quantity);
             textViewName = itemView.findViewById(R.id.textView_name);
             textViewPrice = itemView.findViewById(R.id.textView_price);
             buttonIncrease = itemView.findViewById(R.id.button_increase_cart);
