@@ -67,8 +67,9 @@ public class RatingFoodActivity extends AppCompatActivity {
                 }
 
                 adapter = new RatingFoodAdapter(list);
-                recyclerView.setLayoutManager(new LinearLayoutManager(RatingFoodActivity.this,LinearLayoutManager.VERTICAL, false));
+                recyclerView.setLayoutManager(new LinearLayoutManager(RatingFoodActivity.this, LinearLayoutManager.VERTICAL, false));
                 recyclerView.setAdapter(adapter);
+
             }
 
             @Override
@@ -99,10 +100,10 @@ public class RatingFoodActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Food food = snapshot.getValue(Food.class);
-                        Log.d("HandlerExample", food.toString());
                         Common.FIREBASE_DATABASE.getReference(Common.REF_FOODS).child(order.getProductId()).child("countRating").setValue(food.getCountRating() + 1);
                         Common.FIREBASE_DATABASE.getReference(Common.REF_FOODS).child(order.getProductId()).child("countStars").setValue(food.getCountStars() + order.getCountStars());
                     }
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
@@ -112,17 +113,8 @@ public class RatingFoodActivity extends AppCompatActivity {
             }
 
             Common.FIREBASE_DATABASE.getReference(Common.REF_REQUESTS).child(idRequest).child("orders").setValue(list);
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // Code to execute after 10 seconds
-                    finish();
-                    Log.d("HandlerExample", "This runs after 10 seconds.");
-                }
-            }, 10000); // 10000 milliseconds = 10 seconds
 
-
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

@@ -32,18 +32,14 @@ import io.paperdb.Paper;
 
 
 public class OnGoingFragment extends Fragment {
-
-    RecyclerView recyclerView;
-
-    DatabaseReference data_requests;
-
-    MyOrderAdapter adapter;
-
-    TextView null_orders;
-
     final String status = "0";
 
-    FrameLayout frameLayout;
+    RecyclerView recyclerView;
+    MyOrderAdapter adapter;
+    TextView null_orders;
+
+    DatabaseReference requestsRef;
+    ValueEventListener requestsListener;
 
     public OnGoingFragment() {
     }
@@ -53,8 +49,7 @@ public class OnGoingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_on_going, container, false);
 
-        frameLayout = view.findViewById(R.id.orderDetail);
-        data_requests = Common.FIREBASE_DATABASE.getReference(Common.REF_REQUESTS);
+
         recyclerView = view.findViewById(R.id.recyclerView);
         adapter = new MyOrderAdapter(new ArrayList<>());
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
@@ -68,8 +63,8 @@ public class OnGoingFragment extends Fragment {
     private void loadRequests() {
 
         String idCurrentUser = Common.currentUser.getIdUser();
-
-        data_requests.orderByChild("idCurrentUser").equalTo(idCurrentUser).addValueEventListener(new ValueEventListener() {
+        requestsRef = Common.FIREBASE_DATABASE.getReference(Common.REF_REQUESTS).orderByChild("idCurrentUser").equalTo(idCurrentUser).getRef();
+        requestsListener = new  ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Request> data = new ArrayList<>();
@@ -97,7 +92,15 @@ public class OnGoingFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        };
+        requestsRef.addValueEventListener(requestsListener);
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(requestsRef!=null) {
+            requestsRef.removeEventListener(requestsListener);
+        }
     }
 }

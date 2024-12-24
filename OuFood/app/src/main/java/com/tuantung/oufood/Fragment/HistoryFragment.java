@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.tuantung.oufood.Adapter.MyOrderAdapter;
 import com.tuantung.oufood.Class.Request;
@@ -34,8 +35,11 @@ public class HistoryFragment extends Fragment {
 
     RecyclerView recyclerView;
     MyOrderAdapter adapter;
-    FrameLayout frameLayout;
     TextView null_orders;
+
+    DatabaseReference  requestsRef;
+    ValueEventListener requestsListener;
+
 
     public HistoryFragment() {
     }
@@ -49,7 +53,6 @@ public class HistoryFragment extends Fragment {
 
         null_orders = view.findViewById(R.id.null_orders);
 
-        frameLayout = view.findViewById(R.id.orderDetail);
 
         adapter = new MyOrderAdapter(new ArrayList<>());
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity(),RecyclerView.VERTICAL,false));
@@ -65,7 +68,8 @@ public class HistoryFragment extends Fragment {
 
         String idCurrentUser = Common.currentUser.getIdUser();
 
-        Common.FIREBASE_DATABASE.getReference(Common.REF_REQUESTS).orderByChild("idCurrentUser").equalTo(idCurrentUser).addValueEventListener(new ValueEventListener() {
+        requestsRef = Common.FIREBASE_DATABASE.getReference(Common.REF_REQUESTS).orderByChild("idCurrentUser").equalTo(idCurrentUser).getRef();
+        requestsListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Request> data = new ArrayList<>();
@@ -92,7 +96,15 @@ public class HistoryFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        };
+        requestsRef.addValueEventListener(requestsListener);
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(requestsRef!=null && requestsListener!=null){
+            requestsRef.removeEventListener(requestsListener);
+        }
     }
 }

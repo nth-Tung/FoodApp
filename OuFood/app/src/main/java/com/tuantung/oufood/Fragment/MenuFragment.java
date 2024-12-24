@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.tuantung.oufood.Activity.CartActivity;
 import com.tuantung.oufood.Activity.SaleListActivity;
@@ -42,7 +43,7 @@ import java.util.List;
 
 
 public class MenuFragment extends Fragment {
-    
+
     RecyclerView recyclerView_bestSeller, recyclerView_categories, recyclerView_all_food;
     private ProgressBar mProgressBarCategory;
     private ProgressBar mProgressBarBestFood;
@@ -50,6 +51,14 @@ public class MenuFragment extends Fragment {
     private ImageView imageView_cart;
     private TextView searchView;
 
+
+    // Biến để lưu trữ các ValueEventListener và DatabaseReference
+    private ValueEventListener categoriesListener;
+    private ValueEventListener bestSellerListener;
+    private ValueEventListener allFoodListener;
+    private DatabaseReference categoriesRef;
+    private DatabaseReference bestSellerRef;
+    private DatabaseReference allFoodRef;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -90,8 +99,6 @@ public class MenuFragment extends Fragment {
         setupRecyclerViewAllFood();
 
 
-
-
         searchView = view.findViewById(R.id.searchView);
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,92 +106,53 @@ public class MenuFragment extends Fragment {
                 startActivity(new Intent(requireActivity(), SearchActivity.class));
             }
         });
-//
-//
-//        searchView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//                    @Override
-//                    public boolean onQueryTextSubmit(String query) {
-//                        if (query.trim().isEmpty()) {
-//                            frameLayoutSearch.setVisibility(View.GONE);
-//                        } else {
-//                            homeSearchFragment.setKeySearch(query.toLowerCase());
-//                            frameLayoutSearch.setVisibility(View.VISIBLE);
-//                            getChildFragmentManager().beginTransaction().replace(R.id.fragment_search,homeSearchFragment).commit();
-//                        }
-//                        return false;
-//                    }
-//
-//                    @Override
-//                    public boolean onQueryTextChange(String newText) {
-//                        if (newText.trim().isEmpty()) {
-//                            frameLayoutSearch.setVisibility(View.GONE);
-//                        } else {
-//                            homeSearchFragment.setKeySearch(newText.toLowerCase());
-//                            frameLayoutSearch.setVisibility(View.VISIBLE);
-//                            getChildFragmentManager().beginTransaction()
-//                                    .replace(R.id.fragment_search, homeSearchFragment)
-//                                    .commit();
-//                        }
-//                        return true;
-//                    }
-//                });
-//            }
-//        });
-
-
 
 
         return view;
     }
 
 
-
-
-
     private void setupRecyclerCategories() {
         mProgressBarCategory.setVisibility(View.VISIBLE);
-        Common.FIREBASE_DATABASE.getReference(Common.REF_CATEGORIES).addValueEventListener(new ValueEventListener() {
+        categoriesRef = Common.FIREBASE_DATABASE.getReference(Common.REF_CATEGORIES); // Lưu trữ DatabaseReference
+        categoriesListener = new ValueEventListener() { // Lưu trữ ValueEventListener
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Category> list = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Category category1 = dataSnapshot.getValue(Category.class);
-                    category1.setId(dataSnapshot.getKey());
-                    list.add(category1);
+                    Category category = dataSnapshot.getValue(Category.class);
+                    category.setId(dataSnapshot.getKey());
+                    list.add(category);
                 }
 
-                if(list.size()>0){
+                if (!list.isEmpty()) {
                     recyclerView_categories.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));
                     RecyclerView.Adapter adapter = new CategoryAdapter(list);
                     recyclerView_categories.setAdapter(adapter);
                 }
                 mProgressBarCategory.setVisibility(View.GONE);
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Xử lý lỗi nếu cần
             }
-        });
+        };
+        categoriesRef.addValueEventListener(categoriesListener); // Sử dụng addValueEventListener
     }
 
     private void setupRecyclerViewBestSeller() {
         mProgressBarBestFood.setVisibility(View.VISIBLE);
-        Common.FIREBASE_DATABASE.getReference(Common.REF_FOODS).addValueEventListener(new ValueEventListener() {
+        bestSellerRef = Common.FIREBASE_DATABASE.getReference(Common.REF_FOODS); // Lưu trữ DatabaseReference
+        bestSellerListener = new ValueEventListener() { // Lưu trữ ValueEventListener
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Food> list = new ArrayList<>();
-                Food food;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    food = dataSnapshot.getValue(Food.class);
+                    Food food = dataSnapshot.getValue(Food.class);
                     food.setId(dataSnapshot.getKey());
                     list.add(food);
                 }
-
 
                 for (int i = list.size() - 1; i >= 0; i--) {
                     if (list.get(i).getDiscount().equals("0")) {
@@ -196,56 +164,70 @@ public class MenuFragment extends Fragment {
                     list.remove(i);
                 }
 
-                if(list.size()>0){
-                    recyclerView_bestSeller.setLayoutManager(new LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false));
+                if (!list.isEmpty()) {
+                    recyclerView_bestSeller.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));
                     RecyclerView.Adapter adapter = new SaleListAdapter(list);
                     recyclerView_bestSeller.setAdapter(adapter);
                 }
                 mProgressBarBestFood.setVisibility(View.GONE);
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Xử lý lỗi nếu cần
             }
-        });
+        };
+        bestSellerRef.addValueEventListener(bestSellerListener); // Sử dụng addValueEventListener
     }
 
     private void setupRecyclerViewAllFood() {
-        Common.FIREBASE_DATABASE.getReference(Common.REF_FOODS).addValueEventListener(new ValueEventListener() {
+        allFoodRef = Common.FIREBASE_DATABASE.getReference(Common.REF_FOODS); // Lưu trữ DatabaseReference
+        allFoodListener = new ValueEventListener() { // Lưu trữ ValueEventListener
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 ArrayList<Food> list = new ArrayList<>();
-                Food food;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    food = dataSnapshot.getValue(Food.class);
+                    Food food = dataSnapshot.getValue(Food.class);
                     food.setId(dataSnapshot.getKey());
                     list.add(food);
                 }
 
                 Collections.shuffle(list);
 
-                for(int i = list.size() - 1;i>=0;i--){
-                    if(!list.get(i).getDiscount().equals("0"))
+                for (int i = list.size() - 1; i >= 0; i--) {
+                    if (!list.get(i).getDiscount().equals("0")) {
                         list.remove(i);
+                    }
                 }
 
-
-                if(list.size()>0){
-                    recyclerView_all_food.setLayoutManager(new LinearLayoutManager(requireActivity(),LinearLayoutManager.VERTICAL,false));
+                if (!list.isEmpty()) {
+                    recyclerView_all_food.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
                     RecyclerView.Adapter adapter = new FoodListAdapter(list);
                     recyclerView_all_food.setAdapter(adapter);
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Xử lý lỗi nếu cần
             }
-        });
+        };
+        allFoodRef.addValueEventListener(allFoodListener); // Sử dụng addValueEventListener
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Hủy các sự kiện lắng nghe khi Fragment bị hủy
+        if (categoriesRef != null && categoriesListener != null) {
+            categoriesRef.removeEventListener(categoriesListener);
+        }
+        if (bestSellerRef != null && bestSellerListener != null) {
+            bestSellerRef.removeEventListener(bestSellerListener);
+        }
+        if (allFoodRef != null && allFoodListener != null) {
+            allFoodRef.removeEventListener(allFoodListener);
+        }
+
+    }
 }

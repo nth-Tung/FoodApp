@@ -138,7 +138,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     }
 
     private void getDetailFood(String foodId) {
-        data_foods.child(foodId).addValueEventListener(new ValueEventListener() {
+        data_foods.child(foodId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 currentFood = snapshot.getValue(Food.class);

@@ -31,7 +31,7 @@ public class SaleListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerViewBestSeller() {
-        Common.FIREBASE_DATABASE.getReference(Common.REF_FOODS).addValueEventListener(new ValueEventListener() {
+        Common.FIREBASE_DATABASE.getReference(Common.REF_FOODS).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Food> list = new ArrayList<>();

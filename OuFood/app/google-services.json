@@ -1,52 +1,13 @@
 {
   "project_info": {
-    "project_number": "542373335284",
-    "firebase_url": "https://oumarket-c9c70-default-rtdb.firebaseio.com",
-    "project_id": "oumarket-c9c70",
-    "storage_bucket": "oumarket-c9c70.firebasestorage.app"
+    "project_number": "691747017923",
+    "project_id": "oufoodapp-bd19a",
+    "storage_bucket": "oufoodapp-bd19a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:542373335284:android:c084484ec576bb87d30ea1",
-        "android_client_info": {
-          "package_name": "com.example.openmarketserver"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC60ZN_9SrIPjdveyHzXzsykWWWb02y8sU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:542373335284:android:0b28ade8b1517331d30ea1",
-        "android_client_info": {
-          "package_name": "com.example.oumarket"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC60ZN_9SrIPjdveyHzXzsykWWWb02y8sU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:542373335284:android:193c892899ce40a1d30ea1",
+        "mobilesdk_app_id": "1:691747017923:android:a091efdaf2ec4a328ffe76",
         "android_client_info": {
           "package_name": "com.tuantung.oufood"
         }
@@ -54,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC60ZN_9SrIPjdveyHzXzsykWWWb02y8sU"
+          "current_key": "AIzaSyBlZ9taxB_cCFUSOZVnMV5amUVozVOMmRk"
         }
       ],
       "services": {

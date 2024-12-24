@@ -102,7 +102,7 @@ public class FoodListActivity extends AppCompatActivity {
 
 
     private void filter(String text) {
-        data_foods.orderByChild("categoryId").equalTo(categoryId).addValueEventListener(new ValueEventListener() {
+        data_foods.orderByChild("categoryId").equalTo(categoryId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
