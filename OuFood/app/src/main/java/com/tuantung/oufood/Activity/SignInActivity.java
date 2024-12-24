@@ -41,8 +41,11 @@ public class SignInActivity extends AppCompatActivity {
         Paper.init(this);
         String user = Paper.book().read(Common.USERNAME_KEY);
         String password = Paper.book().read(Common.PASSWORD_KEY);
+
+        loadingDialog = new Customer_LoadingDialog(this, "Vui lòng đợi...");
         if (user != null && password != null) {
             login(user, password);
+            loadingDialog.show();
         }
 
 
@@ -55,7 +58,6 @@ public class SignInActivity extends AppCompatActivity {
         tv_signupNow = findViewById(R.id.tv_SignupNow);
         checkBox = findViewById(R.id.checkbox_remember);
 
-        loadingDialog = new Customer_LoadingDialog(this, "Vui lòng đợi...");
 
 
 //      butotn login
@@ -70,9 +72,9 @@ public class SignInActivity extends AppCompatActivity {
                 return;
             }
 
-//            loadingDialog.show();
 
             login(edit_email.getText().toString(), edit_password.getText().toString());
+            loadingDialog.show();
 
         });
 
@@ -111,7 +113,6 @@ public class SignInActivity extends AppCompatActivity {
 
                             Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
                             startActivity(homeIntent);
-
                             finish();
                         }
 
@@ -120,7 +121,6 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-//                    mDialog.dismiss();
                     loadingDialog.dismiss();
                     AlertDialog.Builder alert = new AlertDialog.Builder(SignInActivity.this);
                     alert.setTitle("Warming!");
