@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.tuantung.oufood.Activity.EditAvatarActivity;
+import com.tuantung.oufood.Activity.RatingFoodActivity;
 import com.tuantung.oufood.Class.Food;
 import com.tuantung.oufood.Class.Order;
 import com.tuantung.oufood.Class.Request;
@@ -91,7 +93,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         }
         holder.buttonRate.setOnClickListener(v -> {
 
-            Intent intent = new Intent(context, RatingFoodAdapter.class);
+            Intent intent = new Intent(context, RatingFoodActivity.class);
             intent.putExtra("idRequest", items.get(position).getIdRequest());
             context.startActivity(intent);
 

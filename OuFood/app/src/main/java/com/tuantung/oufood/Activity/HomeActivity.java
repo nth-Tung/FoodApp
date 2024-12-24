@@ -3,16 +3,20 @@ package com.tuantung.oufood.Activity;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.tuantung.oufood.Fragment.AccountFragment;
 import com.tuantung.oufood.Fragment.MenuFragment;
 import com.tuantung.oufood.Fragment.OrderFragment;
@@ -24,37 +28,40 @@ import java.util.List;
 import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity {
-    private ImageView navMenu;
-    private ImageView navOrder;
-    private ImageView navAccount;
-
     private static final int PERMISSION_REQUEST_CODE = 100;
+
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Paper.init(this);
+        requestPermissions();
+
+//        Paper.init(this);
 
         replaceFragment(new MenuFragment());
 
-        navMenu = findViewById(R.id.nav_menu);
-        navOrder = findViewById(R.id.nav_order);
-        navAccount = findViewById(R.id.nav_account);
-
-
-        requestPermissions();
-//        replaceFragment(new MenuFragment());
-        getVariable();
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+               if(item.getItemId() == R.id.nav_menu){
+                   replaceFragment(new MenuFragment());
+                   return true;
+               }if(item.getItemId() == R.id.nav_order){
+                   replaceFragment(new OrderFragment());
+                   return true;
+               }if(item.getItemId() == R.id.nav_account){
+                   replaceFragment(new AccountFragment());
+                   return true;
+               }
+               return true;
+            }
+        });
     }
 
-    private void getVariable() {
-        navMenu.setOnClickListener(v -> replaceFragment(new MenuFragment()));
-
-        navOrder.setOnClickListener(v -> replaceFragment(new OrderFragment()));
-
-        navAccount.setOnClickListener(v -> replaceFragment(new AccountFragment()));
-    }
 
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -40,8 +40,14 @@ public class SaleListAdapter extends RecyclerView.Adapter<SaleListAdapter.viewho
     public void onBindViewHolder(@NonNull SaleListAdapter.viewholder holder, int position) {
         holder.textViewName.setText(items.get(position).getName());
         holder.textViewPrice.setText(items.get(position).getPrice());
-        holder.textViewStar.setText(""+items.get(position).getCountStars());
         holder.textViewDiscount.setText(items.get(position).getDiscount()+"%\nOFF");
+
+        if(items.get(position).getCountRating()>0){
+            holder.textViewStar.setText(String.format("%.1f",(float) items.get(position).getCountStars()/items.get(position).getCountRating()));
+        }
+        else{
+            holder.textViewStar.setText("5");
+        }
 
         Picasso.get()
                 .load(items.get(position).getUrl()) // URL của ảnh

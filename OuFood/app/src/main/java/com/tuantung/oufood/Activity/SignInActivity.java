@@ -28,19 +28,25 @@ import io.paperdb.Paper;
 public class SignInActivity extends AppCompatActivity {
 
     private AppCompatButton btn_signin;
-    private TextView tv_forgotPassword, tv_signupNow;
-    private TextInputEditText edit_email, edit_password;
+    private TextView tv_forgotPassword;
+    private TextView tv_signupNow;
+    private TextInputEditText edit_email;
+    private TextInputEditText  edit_password;
     private CheckBox checkBox;
     private Customer_LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-
         Paper.init(this);
+        String user = Paper.book().read(Common.USERNAME_KEY);
+        String password = Paper.book().read(Common.PASSWORD_KEY);
+        if (user != null && password != null) {
+            login(user, password);
+        }
 
-        loadingDialog = new Customer_LoadingDialog(this, "Vui lòng đợi...");
+
+        setContentView(R.layout.activity_sign_in);
 
         edit_email = findViewById(R.id.edit_email);
         edit_password = findViewById(R.id.edit_password);
@@ -49,16 +55,8 @@ public class SignInActivity extends AppCompatActivity {
         tv_signupNow = findViewById(R.id.tv_SignupNow);
         checkBox = findViewById(R.id.checkbox_remember);
 
-        String user = Paper.book().read(Common.USERNAME_KEY);
-        String password = Paper.book().read(Common.PASSWORD_KEY);
+        loadingDialog = new Customer_LoadingDialog(this, "Vui lòng đợi...");
 
-        if (user != null && password != null) {
-            checkBox.setChecked(true);
-            if (!user.isEmpty() && !password.isEmpty()) {
-                edit_email.setText(user);
-                edit_password.setText(password);
-            }
-        }
 
 //      butotn login
         btn_signin.setOnClickListener(v -> {
@@ -72,7 +70,7 @@ public class SignInActivity extends AppCompatActivity {
                 return;
             }
 
-            loadingDialog.show();
+//            loadingDialog.show();
 
             login(edit_email.getText().toString(), edit_password.getText().toString());
 
@@ -104,8 +102,6 @@ public class SignInActivity extends AppCompatActivity {
 
                     String userUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
-
                     Common.FIREBASE_DATABASE.getReference(Common.REF_USERS).child(userUid).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -115,7 +111,6 @@ public class SignInActivity extends AppCompatActivity {
                             Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
                             startActivity(homeIntent);
 
-                            loadingDialog.dismiss();
                             finish();
                         }
 

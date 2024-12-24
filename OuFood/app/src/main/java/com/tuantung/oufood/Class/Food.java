@@ -6,12 +6,10 @@ public class Food{
     private String id;
     private String categoryId;
     private String name;
-    private String image;
     private String description;
     private String discount;
     private String price;
     private String url;
-
     private int countRating;
     private int countStars;
 
@@ -19,20 +17,18 @@ public class Food{
     public Food() {
     }
 
-    public Food(String description, String discount, String image, String categoryId, String name, String price, String URL) {
+    public Food(String description, String discount, String categoryId, String name, String price, String URL) {
         this.description = description;
         this.discount = discount;
-        this.image = image;
         this.categoryId = categoryId;
         this.name = name;
         this.price = price;
         this.url = URL;
     }
 
-    public Food(String description, String discount, String image, String categoryId, String name, String price, String URL, int countRating, int countStars) {
+    public Food(String description, String discount, String categoryId, String name, String price, String URL, int countRating, int countStars) {
         this.description = description;
         this.discount = discount;
-        this.image = image;
         this.categoryId = categoryId;
         this.name = name;
         this.price = price;
@@ -41,11 +37,10 @@ public class Food{
         this.countRating = countRating;
     }
 
-    public Food(String categoryId, int countRating, int countStars, String description, String discount, String id, String image, String name, String price, String URL) {
+    public Food(String categoryId, int countRating, int countStars, String description, String discount, String id, String name, String price, String URL) {
         this.id = id;
         this.description = description;
         this.discount = discount;
-        this.image = image;
         this.categoryId = categoryId;
         this.name = name;
         this.price = price;
@@ -56,7 +51,15 @@ public class Food{
 
     @Override
     public String toString() {
-        return "Food{" + "id='" + id + '\'' + ", Name='" + name + '\'' + ", CategoryId='" + categoryId + '\'' + '}';
+        return "Food{" +
+                "id='" + id + '\'' +
+                ", categoryId='" + categoryId + '\'' +
+                ", name='" + name + '\'' +
+                ", discount='" + discount + '\'' +
+                ", price='" + price + '\'' +
+                ", countRating=" + countRating +
+                ", countStars=" + countStars +
+                '}';
     }
 
     public String getId() {
@@ -81,14 +84,6 @@ public class Food{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getDescription() {
