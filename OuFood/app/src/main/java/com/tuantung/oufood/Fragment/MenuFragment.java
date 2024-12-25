@@ -1,10 +1,16 @@
 package com.tuantung.oufood.Fragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -22,6 +28,10 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,14 +47,19 @@ import com.tuantung.oufood.Class.Food;
 import com.tuantung.oufood.R;
 import com.tuantung.oufood.common.Common;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 
 public class MenuFragment extends Fragment {
+    private final int FINE_PERMISSION_CODE =1;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private Location curerntLocation;
+    private TextView textViewaddress;
 
-    RecyclerView recyclerView_bestSeller, recyclerView_categories, recyclerView_all_food;
+    private RecyclerView recyclerView_bestSeller, recyclerView_categories, recyclerView_all_food;
     private ProgressBar mProgressBarCategory;
     private ProgressBar mProgressBarBestFood;
     private TextView mButtonFlashSale;
@@ -64,6 +79,10 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
+
+        textViewaddress = view.findViewById(R.id.textView_address);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity());
+        getLastLocation();
 
         imageView_cart = view.findViewById(R.id.imageView_cart);
         imageView_cart.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +130,33 @@ public class MenuFragment extends Fragment {
         return view;
     }
 
+    private void getLastLocation(){
+        if(ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION )!= PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, FINE_PERMISSION_CODE);
+            return;
+        }
+        Task<Location> locationTask = fusedLocationProviderClient.getLastLocation();
+        locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if(location!=null){
+                    curerntLocation = location;
+
+                    Geocoder geocoder = new Geocoder(requireActivity());
+                    List<Address> addresses;
+                    try {
+                        addresses = geocoder.getFromLocation(curerntLocation.getLatitude(), curerntLocation.getLongitude(), 1);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Address address1 = addresses.get(0);
+                    textViewaddress.setText(address1.getAddressLine(0));
+                }
+            }
+        });
+
+
+    }
 
     private void setupRecyclerCategories() {
         mProgressBarCategory.setVisibility(View.VISIBLE);

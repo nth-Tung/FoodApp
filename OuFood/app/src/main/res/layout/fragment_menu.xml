@@ -51,8 +51,14 @@
 
             <TextView
                 android:id="@+id/textView_address"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/black"
                 android:text="Trường Dại Học Mở cơ sở Nhà Bè"
