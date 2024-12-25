@@ -77,7 +77,7 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
-    private void loadListCart() {
+    public void loadListCart() {
         cart = database.getCarts();
         recyclerView.setLayoutManager(new LinearLayoutManager(CartActivity.this, RecyclerView.VERTICAL, false));
         RecyclerView.Adapter adapter = new CartAdapter(cart);

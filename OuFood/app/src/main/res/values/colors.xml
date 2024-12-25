@@ -14,8 +14,8 @@
 
     <color name="ratingVeryBad">#FF0000</color>       <!-- Đỏ: Rất không hài lòng -->
     <color name="ratingBad">#FFA500</color>          <!-- Cam: Không hài lòng -->
-    <color name="ratingNeutral">#FFFF00</color>      <!-- Vàng: Bình thường -->
-    <color name="ratingGood">#90EE90</color>         <!-- Xanh nhạt: Hài lòng -->
-    <color name="ratingVeryGood">#008000</color>     <!-- Xanh lá cây: Rất hài lòng -->
+    <color name="ratingNeutral">#90EE90</color>      <!-- Vàng: Bình thường -->
+    <color name="ratingGood">#008000</color>         <!-- Xanh nhạt: Hài lòng -->
+    <color name="ratingVeryGood">#FFFF00</color>     <!-- Xanh lá cây: Rất hài lòng -->
     <color name="ratingDefault">#CCCCCC</color>
 </resources>

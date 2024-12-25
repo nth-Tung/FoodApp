@@ -43,7 +43,7 @@ public class SaleListAdapter extends RecyclerView.Adapter<SaleListAdapter.viewho
         holder.textViewDiscount.setText(items.get(position).getDiscount()+"%\nOFF");
 
         if(items.get(position).getCountRating()>0){
-            holder.textViewStar.setText(String.format("%.1f",(float) items.get(position).getCountStars()/items.get(position).getCountRating()));
+            holder.textViewStar.setText(String.format("%.1f",(double) items.get(position).getCountStars()/items.get(position).getCountRating()));
         }
         else{
             holder.textViewStar.setText("5");

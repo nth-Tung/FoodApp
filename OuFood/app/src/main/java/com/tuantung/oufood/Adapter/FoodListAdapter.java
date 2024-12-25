@@ -57,7 +57,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewho
         }
 
         if(items.get(position).getCountRating() > 0){
-            holder.textViewStar.setText(""+items.get(position).getCountStars()/(items.get(position).getCountRating()*1.0));
+            holder.textViewStar.setText(String.format("%.1f",(double)items.get(position).getCountStars()/(items.get(position).getCountRating())));
         }
         else{
             holder.textViewStar.setText("5");
