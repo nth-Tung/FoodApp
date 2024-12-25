@@ -57,7 +57,7 @@ public class MenuFragment extends Fragment {
     private final int FINE_PERMISSION_CODE =1;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Location curerntLocation;
-    private TextView textViewaddress;
+    private TextView textViewAddress;
 
     private RecyclerView recyclerView_bestSeller, recyclerView_categories, recyclerView_all_food;
     private ProgressBar mProgressBarCategory;
@@ -80,7 +80,7 @@ public class MenuFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        textViewaddress = view.findViewById(R.id.textView_address);
+        textViewAddress = view.findViewById(R.id.textView_address);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity());
         getLastLocation();
 
@@ -150,7 +150,7 @@ public class MenuFragment extends Fragment {
                         throw new RuntimeException(e);
                     }
                     Address address1 = addresses.get(0);
-                    textViewaddress.setText(address1.getAddressLine(0));
+                    textViewAddress.setText(address1.getAddressLine(0));
                 }
             }
         });
