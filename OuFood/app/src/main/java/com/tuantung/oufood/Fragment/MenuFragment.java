@@ -36,6 +36,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.tuantung.oufood.Activity.AddressListActivity;
 import com.tuantung.oufood.Activity.CartActivity;
 import com.tuantung.oufood.Activity.SaleListActivity;
 import com.tuantung.oufood.Activity.SearchActivity;
@@ -56,7 +57,6 @@ import java.util.List;
 public class MenuFragment extends Fragment {
     private final int FINE_PERMISSION_CODE =1;
     private FusedLocationProviderClient fusedLocationProviderClient;
-    private Location curerntLocation;
     private TextView textViewAddress;
 
     private RecyclerView recyclerView_bestSeller, recyclerView_categories, recyclerView_all_food;
@@ -65,6 +65,7 @@ public class MenuFragment extends Fragment {
     private TextView mButtonFlashSale;
     private ImageView imageView_cart;
     private TextView searchView;
+    private ImageView imageViewAddress;
 
 
     // Biến để lưu trữ các ValueEventListener và DatabaseReference
@@ -77,14 +78,32 @@ public class MenuFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
         textViewAddress = view.findViewById(R.id.textView_address);
+        imageViewAddress = view.findViewById(R.id.imageView_address);
+        imageView_cart = view.findViewById(R.id.imageView_cart);
+        mButtonFlashSale = view.findViewById(R.id.button_flashSale);
+        mProgressBarCategory = view.findViewById(R.id.progressBar_category);
+        recyclerView_categories = view.findViewById(R.id.recycler_categories);
+        recyclerView_bestSeller = view.findViewById(R.id.recycler_best_sale);
+        mProgressBarBestFood = view.findViewById(R.id.progressBar_bestFood);
+        recyclerView_all_food = view.findViewById(R.id.recyclerView_all_food);
+        searchView = view.findViewById(R.id.searchView);
+
+        //Get current location
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity());
         getLastLocation();
 
-        imageView_cart = view.findViewById(R.id.imageView_cart);
+        //move to addressListActivity
+        imageViewAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireActivity(), AddressListActivity.class));
+            }
+        });
+
+        //move to cartActivity
         imageView_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,9 +111,7 @@ public class MenuFragment extends Fragment {
             }
         });
 
-
         //button flashSale
-        mButtonFlashSale = view.findViewById(R.id.button_flashSale);
         mButtonFlashSale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,30 +119,22 @@ public class MenuFragment extends Fragment {
             }
         });
 
-
-//        recycler categories
-        mProgressBarCategory = view.findViewById(R.id.progressBar_category);
-        recyclerView_categories = view.findViewById(R.id.recycler_categories);
+        //recycler categories
         setupRecyclerCategories();
 
-//        recycler best seller
-        mProgressBarBestFood = view.findViewById(R.id.progressBar_bestFood);
-        recyclerView_bestSeller = view.findViewById(R.id.recycler_best_sale);
+        //recycler best seller
         setupRecyclerViewBestSeller();
 
-//        recycler all food
-        recyclerView_all_food = view.findViewById(R.id.recyclerView_all_food);
+        //recycler all food
         setupRecyclerViewAllFood();
 
-
-        searchView = view.findViewById(R.id.searchView);
+        //move to searchActivity
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(requireActivity(), SearchActivity.class));
             }
         });
-
 
         return view;
     }
@@ -140,12 +149,10 @@ public class MenuFragment extends Fragment {
             @Override
             public void onSuccess(Location location) {
                 if(location!=null){
-                    curerntLocation = location;
-
                     Geocoder geocoder = new Geocoder(requireActivity());
                     List<Address> addresses;
                     try {
-                        addresses = geocoder.getFromLocation(curerntLocation.getLatitude(), curerntLocation.getLongitude(), 1);
+                        addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

@@ -63,11 +63,11 @@
                 android:textColor="@color/black"
                 android:text="Trường Dại Học Mở cơ sở Nhà Bè"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_address"
                 app:layout_constraintStart_toEndOf="@+id/imageView5" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/imageView_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/next_button"
