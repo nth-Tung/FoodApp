@@ -39,22 +39,23 @@ public class HomeActivity extends AppCompatActivity {
 
         requestPermissions();
 
-//        Paper.init(this);
-
-        replaceFragment(new MenuFragment());
+        MenuFragment  menuFragment = new MenuFragment();
+        OrderFragment orderFragment = new OrderFragment();
+        AccountFragment accountFragment = new AccountFragment();
+        replaceFragment(menuFragment);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                if(item.getItemId() == R.id.nav_menu){
-                   replaceFragment(new MenuFragment());
+                   replaceFragment(menuFragment);
                    return true;
                }if(item.getItemId() == R.id.nav_order){
-                   replaceFragment(new OrderFragment());
+                   replaceFragment(orderFragment);
                    return true;
                }if(item.getItemId() == R.id.nav_account){
-                   replaceFragment(new AccountFragment());
+                   replaceFragment(accountFragment);
                    return true;
                }
                return true;

@@ -32,7 +32,7 @@ public class SaleListAdapter extends RecyclerView.Adapter<SaleListAdapter.viewho
     @Override
     public SaleListAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food_sale_a,parent,false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food_sale,parent,false);
         return new viewholder(inflate);
     }
 

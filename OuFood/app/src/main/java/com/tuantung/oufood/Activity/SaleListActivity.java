@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -20,11 +21,15 @@ import java.util.ArrayList;
 
 public class SaleListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale_list);
+
+        toolbar = findViewById(R.id.toolbar_FoodList);
+        setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recycler_sale);
         setupRecyclerViewBestSeller();
