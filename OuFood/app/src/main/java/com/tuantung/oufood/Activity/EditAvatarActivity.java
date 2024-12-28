@@ -49,6 +49,7 @@ public class EditAvatarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 requestPermissions();
+                selectPic();
             }
         });
 
