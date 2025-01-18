@@ -5,7 +5,7 @@
     android:layout_height="210sp"
     android:layout_marginHorizontal="10sp"
     android:layout_marginTop="10sp"
-    android:background="@drawable/border"
+    android:background="@drawable/gray_border_bg"
     android:backgroundTint="@color/gray">
 
     <!--    image-->
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/baseline_info_24" />
+            android:src="@drawable/info_ic" />
 
     </androidx.cardview.widget.CardView>
 

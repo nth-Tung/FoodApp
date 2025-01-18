@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_menu"
-        android:icon="@drawable/menu"
+        android:icon="@drawable/menu_ic"
         android:title="Menu"/>
 
     <item
         android:id="@+id/nav_order"
-        android:icon="@drawable/order"
+        android:icon="@drawable/history_ic"
         android:title="Đơn hàng"/>
 
     <item
         android:id="@+id/nav_account"
-        android:icon="@drawable/account"
+        android:icon="@drawable/account_ic"
         android:title="Tài khoản"/>
 </menu>

@@ -1,14 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.google.services)
+//    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
-    namespace = "com.tuantung.oufood"
+    namespace = "com.nttung.oufood"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.tuantung.oufood"
+        applicationId = "com.nttung.oufood"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -45,37 +46,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation("com.google.android.gms:play-services-maps:19.0.0")
     implementation("com.google.android.gms:play-services-location:20.0.0")
-//
     implementation(libs.cloudinary.android)
-//    implementation(libs.ratingBar)
-//    implementation(libs.play.services.location)
-//    implementation(libs.android.socialButtons)
-//    implementation(libs.rey5137)
     implementation(libs.paperdb)
-//    implementation(libs.materialSearchBar)
-//    implementation(libs.firebase.auth)
     implementation(libs.sqliteassethelper)
-//    implementation(libs.design)
-//    implementation(libs.firebase.storage.ktx)
-//    implementation(libs.firebase.storage)
-//    implementation(libs.android.iconify.material)
-//    implementation(libs.android.iconify.fontawesome)
     implementation(libs.picasso)
-//    implementation(libs.firebase.ui.database)
-//    implementation(libs.recyclerview.v7)
-//    implementation(libs.cardview.v7)
-//    implementation(libs.appcompat.v7)
-//    implementation(libs.core)
-//    implementation(libs.firebase.database)
-//    implementation(libs.materialedittext)
-//    implementation(libs.firebase.analytics)
-//    implementation(libs.firebase.bom)
-////
-//
-//    implementation(libs.annotation)
-//    implementation(libs.lifecycle.livedata.ktx)
-//    implementation(libs.lifecycle.viewmodel.ktx)
-//    implementation(libs.navigation.fragment)
-//    implementation(libs.navigation.ui)
-//    implementation(libs.play.services.maps)
 }

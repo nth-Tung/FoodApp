@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_search"
-        android:icon="@drawable/search_icon"
+        android:icon="@drawable/search_ic"
         android:orderInCategory="100"
         android:title=""
         app:actionViewClass="androidx.appcompat.widget.SearchView"

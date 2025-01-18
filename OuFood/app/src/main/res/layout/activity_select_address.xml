@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/back_button"
+        app:navigationIcon="@drawable/back_ic"
         app:title="Chọn địa chỉ" />
 
     <LinearLayout

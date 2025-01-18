@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "OuFood"
+rootProject.name = "OUFood"
 include(":app")
  

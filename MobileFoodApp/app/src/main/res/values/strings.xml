@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">OU Food</string>
-    <string name="login">Đăng nhập</string>
-    <string name="signup">Đăng ký</string>
-    <string name="forgot_password">Quên mật khẩu</string>
-    <string name="xac_nhan">Gửi</string>
-    <string name="CURRENCY">đ</string>
-
-</resources>

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/main_background" />
+        android:src="@drawable/main_bg" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/menu_food_list"
             app:title="Tìm món ngon ở đây"
-            app:navigationIcon="@drawable/back_button" />
+            app:navigationIcon="@drawable/back_ic" />
 
         <TextView
             android:id="@+id/tv_noData"

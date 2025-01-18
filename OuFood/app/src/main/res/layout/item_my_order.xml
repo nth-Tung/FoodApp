@@ -34,7 +34,7 @@
                 android:layout_height="100dp"
                 app:tint="@color/blue"
                 android:scaleType="centerCrop"
-                android:src="@drawable/food" />
+                android:src="@drawable/food_ic" />
 
         </androidx.cardview.widget.CardView>
 

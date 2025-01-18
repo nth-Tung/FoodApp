@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -10,28 +9,15 @@
     android:orientation="vertical"
     tools:context=".Activity.SignInActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/main_background"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/app_name"
-            android:textColor="@color/main_color"
+            android:textColor="@color/blue"
             android:textSize="50sp"
             android:textStyle="bold"
             android:layout_marginBottom="80dp"/>
-
-
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
@@ -40,6 +26,7 @@
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
             android:hint="Email"
+            android:textColorHint="@color/black"
             app:boxCornerRadiusBottomEnd="20sp"
             app:boxCornerRadiusBottomStart="20sp"
             app:boxCornerRadiusTopEnd="20sp"
@@ -49,7 +36,8 @@
                 android:id="@+id/edit_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textColor="@color/black"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,6 +49,7 @@
             android:layout_marginTop="10sp"
             android:layout_marginRight="20sp"
             android:hint="Mật khẩu"
+            android:textColorHint="@color/black"
             app:boxCornerRadiusBottomEnd="20sp"
             app:boxCornerRadiusBottomStart="20sp"
             app:boxCornerRadiusTopEnd="20sp"
@@ -71,7 +60,8 @@
                 android:id="@+id/edit_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="@color/black"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,7 +77,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Lưu tài khoản đăng nhập" />
+                android:text="Lưu tài khoản đăng nhập"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/tv_ForgotPass"
@@ -95,7 +86,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="Quên mật khẩu" />
+                android:text="Quên mật khẩu"
+                android:textColor="@color/black"/>
 
 
         </RelativeLayout>
@@ -107,7 +99,7 @@
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="20dp"
             android:text="@string/login"
-            android:background="@drawable/gradient_button_login_signup"
+            android:background="@drawable/button_bg"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -123,7 +115,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lần đầu đến với OUFood? "
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/tv_SignupNow"
@@ -138,4 +131,3 @@
 
     </LinearLayout>
 
-</FrameLayout>

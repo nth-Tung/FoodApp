@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10sp"
-    android:background="@drawable/border"
+    android:background="@drawable/gray_border_bg"
     android:padding="10sp">
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_height="128dp"
         android:layout_weight="1"
         android:scaleType="centerCrop"
-        android:src="@drawable/baseline_info_24" />
+        android:src="@drawable/info_ic" />
 
     <LinearLayout
         android:layout_width="wrap_content"
