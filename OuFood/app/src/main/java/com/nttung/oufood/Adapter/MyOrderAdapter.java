@@ -61,17 +61,24 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull MyOrderAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (items.get(position).getStatus().equals("0")) { //ongoing
-            holder.textViewStatus.setVisibility(View.VISIBLE);
             holder.textViewStatus.setText("Đang giao");
             holder.buttonLayoutHistory.setVisibility(View.GONE);
         } else { // history
             holder.buttonLayoutOngoing.setVisibility(View.GONE);
             holder.textViewStatus.setText("Đã giao");
             holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.blue));
+
+            for (Order order : items.get(position).getOrders()) {
+                if (!order.getIsRate()) {
+                    holder.buttonRate.setVisibility(View.VISIBLE);
+                    break;
+                }
+            }
+
             if (items.get(position).getStatus().equals("-1")) {
-                holder.buttonRate.setVisibility(View.INVISIBLE);
                 holder.textViewStatus.setText("Đã hủy");
                 holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.red));
+                holder.buttonRate.setVisibility(View.GONE);
             }
         }
 
@@ -82,13 +89,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         int countItems = (items.get(position).getOrders()).size();
         holder.textViewCountItems.setText(String.valueOf(countItems));
 
-        holder.buttonRate.setVisibility(View.INVISIBLE);
-        for (Order order : items.get(position).getOrders()) {
-            if (!order.getIsRate()) {
-                holder.buttonRate.setVisibility(View.VISIBLE);
-                break;
-            }
-        }
+
         holder.buttonRate.setOnClickListener(v -> {
 
             Intent intent = new Intent(context, RatingFoodActivity.class);

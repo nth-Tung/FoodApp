@@ -38,19 +38,6 @@ public class Order {
         Discount = discount;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "ProductId='" + ProductId + '\'' +
-                ", ProductName='" + ProductName + '\'' +
-                ", Price='" + Price + '\'' +
-                ", Quantity='" + Quantity + '\'' +
-                ", Discount='" + Discount + '\'' +
-                ", isRate=" + isRate +
-                ", countStars=" + countStars +
-                '}';
-    }
-
 
 
     public String getProductId() {

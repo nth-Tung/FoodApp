@@ -9,12 +9,6 @@
     android:background="@color/white"
     tools:context=".Fragment.OrderFragment">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/main_bg" />
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

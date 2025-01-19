@@ -11,9 +11,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,6 +44,8 @@ public class CartActivity extends AppCompatActivity {
     AppCompatButton buttonOrder;
 
     List<Order> cart;
+
+    CartAdapter adapter;
 
 
     @Override
@@ -73,12 +77,14 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     public void loadListCart() {
         cart = database.getCarts();
         recyclerView.setLayoutManager(new LinearLayoutManager(CartActivity.this, RecyclerView.VERTICAL, false));
-        RecyclerView.Adapter adapter = new CartAdapter(cart);
+        adapter = new CartAdapter(cart);
         recyclerView.setAdapter(adapter);
 
         updateBill();
@@ -90,6 +96,38 @@ public class CartActivity extends AppCompatActivity {
         }
 
     }
+
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CartActivity.this);
+            builder.setTitle("Delete a requests?");
+            builder.setMessage("Are you sure?");
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                int position = viewHolder.getAdapterPosition();
+                adapter.removeOrder(position);
+                adapter.notifyItemRemoved(position);
+                updateBill();
+
+                if (adapter.getItems() == null || adapter.getItems().isEmpty()) {
+                    textViewNoData.setVisibility(View.VISIBLE);
+                } else {
+                    textViewNoData.setVisibility(View.GONE);
+                }
+
+            });
+
+            builder.setNegativeButton("No", (dialog, which) -> adapter.notifyItemChanged(viewHolder.getAdapterPosition()));
+
+            builder.show();
+        }
+    };
 
     public void updateBill() {
         try (Database database = new Database(getBaseContext())) {
@@ -127,7 +165,6 @@ public class CartActivity extends AppCompatActivity {
                 scheduleNotification(Common.DELAY_TIME, id);
                 Common.FIREBASE_DATABASE.getReference(Common.REF_REQUESTS).child(id).setValue(request);
                 database.cleanCart();
-//            CuteToast.ct(getBaseContext(), "Thank you", Toast.LENGTH_SHORT, CuteToast.SUCCESS, true).show();
                 Toast.makeText(this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
                 finish();
 //        }

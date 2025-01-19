@@ -85,10 +85,6 @@ public class Food {
         return String.format("%.1f", i);
     }
 
-    @Override
-    public String toString() {
-        return "Food{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", countRating=" + countRating + ", countStars=" + countStars + '}';
-    }
 
     public String getId() {
         return id;
