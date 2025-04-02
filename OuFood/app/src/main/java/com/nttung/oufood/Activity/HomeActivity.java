@@ -56,6 +56,13 @@ public class HomeActivity extends AppCompatActivity {
                return true;
             }
         });
+
+        String navigateTo = getIntent().getStringExtra("flag");
+        if (navigateTo != null) {
+            if (navigateTo.equals("notification")) {
+                bottomNavigationView.setSelectedItemId(R.id.nav_order);
+            }
+        } else replaceFragment(menuFragment);
     }
 
 

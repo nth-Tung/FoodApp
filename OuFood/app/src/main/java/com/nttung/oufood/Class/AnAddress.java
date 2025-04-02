@@ -1,6 +1,6 @@
 package com.nttung.oufood.Class;
 
-import com.nttung.oufood.common.AddressType;
+import com.nttung.oufood.Helper.AddressType;
 
 public class AnAddress {
     private String address;

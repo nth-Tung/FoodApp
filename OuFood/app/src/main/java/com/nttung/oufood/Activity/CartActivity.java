@@ -1,11 +1,11 @@
 package com.nttung.oufood.Activity;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -25,8 +25,9 @@ import com.nttung.oufood.Class.Order;
 import com.nttung.oufood.Class.Request;
 import com.nttung.oufood.Class.Ward;
 import com.nttung.oufood.Database.Database;
+import com.nttung.oufood.Helper.Notification;
 import com.nttung.oufood.R;
-import com.nttung.oufood.common.AddressType;
+import com.nttung.oufood.Helper.AddressType;
 import com.nttung.oufood.common.Common;
 
 import java.util.List;
@@ -180,11 +181,9 @@ public class CartActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         if (alarmManager != null) {
-            long triggerTime = System.currentTimeMillis() + delayTime; // Thời gian kích hoạt
-            alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
-
+            long triggerTime = System.currentTimeMillis() + delayTime;
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
         }
-
     }
 
     @Override

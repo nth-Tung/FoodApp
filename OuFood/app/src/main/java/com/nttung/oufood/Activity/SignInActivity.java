@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.nttung.oufood.Class.Customer_LoadingDialog;
+import com.nttung.oufood.Helper.Customer_LoadingDialog;
 import com.nttung.oufood.Class.User;
 import com.nttung.oufood.R;
 import com.nttung.oufood.common.Common;

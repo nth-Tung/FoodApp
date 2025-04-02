@@ -1,4 +1,4 @@
-package com.nttung.oufood.Class;
+package com.nttung.oufood.Helper;
 
 import android.app.Dialog;
 import android.content.Context;

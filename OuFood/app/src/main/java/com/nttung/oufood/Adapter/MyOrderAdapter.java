@@ -30,8 +30,10 @@ import com.nttung.oufood.Fragment.OrderDetailFragment;
 import com.nttung.oufood.R;
 import com.nttung.oufood.common.Common;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHolder> {
     private List<Request> items;
@@ -64,9 +66,10 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
             holder.textViewStatus.setText("Đang giao");
             holder.buttonLayoutHistory.setVisibility(View.GONE);
         } else { // history
-            holder.buttonLayoutOngoing.setVisibility(View.GONE);
             holder.textViewStatus.setText("Đã giao");
             holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.blue));
+            holder.buttonLayoutOngoing.setVisibility(View.GONE);
+            holder.buttonRate.setVisibility(View.GONE);
 
             for (Order order : items.get(position).getOrders()) {
                 if (!order.getIsRate()) {
@@ -83,10 +86,19 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         }
 
         holder.textViewOrderId.setText(items.get(position).getIdRequest());
-        holder.textViewToTal.setText(items.get(position).getTotal());
-        holder.textViewTime.setText("TIME");
 
-        int countItems = (items.get(position).getOrders()).size();
+        String priceString = items.get(position).getTotal();
+        double price = Double.parseDouble(priceString);
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        String formattedPrice = formatter.format(price);
+        holder.textViewToTal.setText(formattedPrice);
+
+        holder.textViewTime.setText(items.get(position).getTime());
+
+        int countItems = 0;
+        for(Order order : items.get(position).getOrders()){
+            countItems += Integer.parseInt(order.getQuantity());
+        }
         holder.textViewCountItems.setText(String.valueOf(countItems));
 
 

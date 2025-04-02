@@ -1,10 +1,12 @@
 package com.nttung.oufood.Class;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Request {
     private String idRequest;
-    private String idCURRENTUSER;
+    private String idCurrentUser;
     private String total;
     private List<Order> Orders;
     private AnAddress anAddress;
@@ -13,19 +15,32 @@ public class Request {
     public Request() {
     }
 
-    public Request(String idRequest, String idCURRENTUSER, String total, List<Order> orders, AnAddress anAddress, String status) {
+    public Request(String idRequest, String idCurrentUser, String total, List<Order> orders, AnAddress anAddress, String status) {
         this.idRequest = idRequest;
-        this.idCURRENTUSER = idCURRENTUSER;
+        this.idCurrentUser = idCurrentUser;
         this.total = total;
         Orders = orders;
         this.anAddress = anAddress;
         this.status = status;
     }
 
-    ////////////////////////////////
-//    getter + setter
-    public String getIdCURRENTUSER() {
-        return idCURRENTUSER;
+    public String getTime() {
+        long timestamp = Long.parseLong(this.idRequest);
+
+        // Định dạng mong muốn: HH:mm:ss d/M/Y
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss d/M/y");
+
+        // Chuyển timestamp sang Date
+        Date date = new Date(timestamp);
+
+        // Chuyển sang chuỗi với định dạng mong muốn
+        String formattedDate = formatter.format(date);
+
+        return formattedDate;
+    }
+
+    public String getIdCurrentUser() {
+        return idCurrentUser;
     }
 
     public AnAddress getAnAddress() {
@@ -36,8 +51,8 @@ public class Request {
         this.anAddress = anAddress;
     }
 
-    public void setIdCURRENTUSER(String idCURRENTUSER) {
-        this.idCURRENTUSER = idCURRENTUSER;
+    public void setIdCurrentUser(String idCurrentUser) {
+        this.idCurrentUser = idCurrentUser;
     }
 
     public String getIdRequest() {
@@ -71,8 +86,5 @@ public class Request {
     public void setOrders(List<Order> orders) {
         Orders = orders;
     }
-
-    //    getter + setter
-///////////////////////////////////////////
 
 }

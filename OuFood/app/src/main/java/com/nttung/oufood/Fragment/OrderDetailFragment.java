@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -62,6 +63,15 @@ public class OrderDetailFragment extends BottomSheetDialogFragment {
                     phone.setText(request.getAnAddress().getPhone());
                     address.setText(request.getAnAddress().getAddress());
                     total.setText(request.getTotal());
+
+                    orderTime.setText(request.getTime());
+                    if (request.getStatus().equals("1")) {
+                        status.setTextColor(ContextCompat.getColor(requireActivity(), R.color.green));
+                    }
+                    if (request.getStatus().equals("-1")) {
+                        status.setTextColor(ContextCompat.getColor(requireActivity(), R.color.red));
+                    }
+                    status.setText(getStringStatus(request.getStatus()));
 
                     status.setText(getStringStatus(request.getStatus()));
 

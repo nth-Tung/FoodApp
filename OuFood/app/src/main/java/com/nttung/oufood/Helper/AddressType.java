@@ -1,4 +1,4 @@
-package com.nttung.oufood.common;
+package com.nttung.oufood.Helper;
 
 public enum AddressType {
     HOME,
